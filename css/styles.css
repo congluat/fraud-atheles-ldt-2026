@@ -485,18 +485,11 @@ a {
   margin: 0;
   padding: 0.5rem 0 1rem;
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(15rem, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--trail) 60%, transparent) transparent;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: clamp(1.75rem, 2.5vw, 2.5rem) clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
 .timeline__item {
-  scroll-snap-align: start;
   position: relative;
   padding-top: 1.75rem;
   border-top: 2px solid color-mix(in srgb, currentColor 25%, transparent);
@@ -1726,6 +1719,55 @@ a {
   color: var(--trail);
 }
 
+.budget__pay {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 0 0 1.75rem;
+  padding: 0.8rem 1.4rem;
+  background: #a50064;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #a50064;
+  transition: background 0.2s, color 0.2s;
+}
+
+.budget__pay:hover,
+.budget__pay:focus-visible {
+  background: transparent;
+  color: #ff8ac6;
+}
+
+.budget__pay-label {
+  font: 700 0.95rem var(--font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.budget__pay-hint {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.person__pay {
+  display: flex;
+  justify-content: center;
+  margin: 0.25rem 0 0;
+}
+
+.person__pay:hover,
+.person__pay:focus-visible {
+  color: #a50064;
+}
+
+@media (max-width: 760px) {
+  .budget__pay {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .budget__people li.is-clickable {
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
@@ -2690,7 +2732,7 @@ html:has(dialog.menu[open]) {
   color: var(--moss-light);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .gear-table,
   .gear-legend {
     display: none;

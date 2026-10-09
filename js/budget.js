@@ -256,11 +256,18 @@
       return li;
     });
 
-    const parts = [
-      stats,
+    const payLink = root.querySelector(".budget__pay");
+    const parts = [stats];
+    if (balance < 0 && payLink) {
+      const pay = payLink.cloneNode(true);
+      pay.classList.add("person__pay");
+      pay.querySelector(".budget__pay-label").textContent = `Đóng thêm ${money(-balance)} qua MoMo`;
+      parts.push(pay);
+    }
+    parts.push(
       block(`Đã đóng · ${payments.length} lần`, payRows, payments.length ? payments.reduce((s, r) => s + r.amount, 0) : null, "Chưa đóng đợt nào."),
-      block(`Đã chi · ${spends.length} khoản`, spendRows, spends.length ? spends.reduce((s, it) => s + it.each, 0) : null, "Chưa có khoản chi nào."),
-    ];
+      block(`Đã chi · ${spends.length} khoản`, spendRows, spends.length ? spends.reduce((s, it) => s + it.each, 0) : null, "Chưa có khoản chi nào.")
+    );
     if (skipped.length) {
       parts.push(el("p", "hint person__skip", `Không tính: ${skipped.map((it) => `${it.title} (${it.date})`).join(", ")}`));
     }
