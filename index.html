@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fraud Athletes — Trip Đà Lạt tham gia Lamdong Trail 2026 (06–08/11/2026). Cự ly 15K · 55K · 85K. Di chuyển, chỗ ở, lịch trình, ăn uống và thu chi."
+    />
+    <title>Fraud Athletes · Lamdong Trail 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#menu">Tới menu</a>
+
+    <main>
+      <section class="home" id="home" aria-labelledby="home-title">
+        <div class="home__media" aria-hidden="true">
+          <video
+            class="home__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1920&q=80"
+            aria-hidden="true"
+          >
+            <source
+              src="https://lamdongtrail.vn/wp-content/themes/theme/assets/video/1.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div class="home__veil" aria-hidden="true"></div>
+
+        <div class="home__inner">
+          <header class="home__head">
+            <p class="home__brand">Fraud Athletes</p>
+            <h1 id="home-title">Lamdong Trail 2026 · Mùa đổi mình</h1>
+            <p class="home__meta">
+              <span>06 – 08.11.2026</span>
+              <span>Thung Lũng Tình Yêu · Đà Lạt</span>
+              <span>15K · 55K · 85K</span>
+            </p>
+            <p class="home__count" data-countdown="2026-11-07T03:00:00+07:00"></p>
+          </header>
+
+          <nav class="tiles" id="menu" aria-label="Các mục của trip">
+            <a class="tile" href="#gioi-thieu">
+              <span class="tile__num">01</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 11v6M12 7.5v.01" />
+              </svg>
+              <span class="tile__label">Giới thiệu</span>
+              <span class="tile__sub">Trip là gì</span>
+            </a>
+            <a class="tile tile--wide" href="#giai-chay">
+              <span class="tile__num">02</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 20l6-10 4 6 3-4 5 8z" />
+                <path d="M9 10V4l4 2-4 2" />
+              </svg>
+              <span class="tile__label">Giải chạy</span>
+              <span class="tile__sub">15K · 55K · 85K</span>
+            </a>
+            <a class="tile" href="#thanh-vien">
+              <span class="tile__num">03</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9" cy="8" r="3.5" />
+                <path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5" />
+                <circle cx="17" cy="9" r="2.5" />
+                <path d="M16.5 14.5c2.6.2 4.3 1.9 5 4.5" />
+              </svg>
+              <span class="tile__label">Danh sách tham gia</span>
+              <span class="tile__sub">Ai đi cùng</span>
+            </a>
+            <a class="tile" href="#di-chuyen">
+              <span class="tile__num">04</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="13" rx="2" />
+                <path d="M3 11h18M7 17v3M17 17v3" />
+                <circle cx="7.5" cy="14" r=".6" />
+                <circle cx="16.5" cy="14" r=".6" />
+              </svg>
+              <span class="tile__label">Di chuyển</span>
+              <span class="tile__sub">Xe Thành Bưởi · giường nằm</span>
+            </a>
+            <a class="tile" href="#cho-o">
+              <span class="tile__num">05</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 11l9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M10 20v-5h4v5" />
+              </svg>
+              <span class="tile__label">Chỗ ở</span>
+              <span class="tile__sub">2 villa · chia phòng</span>
+            </a>
+            <a class="tile" href="#lich-trinh">
+              <span class="tile__num">06</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+              <span class="tile__label">Lịch trình</span>
+              <span class="tile__sub">05 – 09.11</span>
+            </a>
+            <a class="tile" href="#an-uong">
+              <span class="tile__num">07</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 3v8a2 2 0 0 0 2 2v8M10 3v8a2 2 0 0 1-2 2M8 3v6" />
+                <path d="M17 21V3c-2 1-3 4-3 8h3" />
+              </svg>
+              <span class="tile__label">Ăn uống</span>
+              <span class="tile__sub">Đặc sản Đà Lạt</span>
+            </a>
+            <a class="tile" href="#thu-chi">
+              <span class="tile__num">08</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="18" height="13" rx="2" />
+                <path d="M3 10h18M16 15h2" />
+              </svg>
+              <span class="tile__label">Thu chi</span>
+              <span class="tile__sub">Ngân sách chung</span>
+            </a>
+            <a class="tile" href="#luu-y">
+              <span class="tile__num">09</span>
+              <svg class="tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19V5a2 2 0 0 1 2-2h13v14H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13" />
+                <path d="M8 7h7M8 11h5" />
+              </svg>
+              <span class="tile__label">Tham khảo</span>
+              <span class="tile__sub">Quy định · hotline</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="page" id="gioi-thieu">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">01</span>
+            <div>
+              <p class="eyebrow">Giới thiệu</p>
+              <h2>Chuyến đi này là gì?</h2>
+            </div>
+          </header>
+          <p class="lead">
+            Fraud Athletes lên Đà Lạt chạy <strong>Lamdong Trail 2026 – Mùa đổi mình</strong>,
+            giải trail “chill giữa đại ngàn” qua rừng thông, đồi dã quỳ và đất đỏ bazan.
+            Đà Lạt cao khoảng 1.500m, tháng 11 trời khô, ban ngày 18–26°C,
+            sáng sớm và tối khá lạnh.
+          </p>
+          <ul class="stats">
+            <li>
+              <span class="stats__label">Thời gian</span>
+              <span class="stats__value">05 – 09.11.2026</span>
+              <span class="hint">Giải chạy 06 – 08.11 · race 07.11</span>
+            </li>
+            <li>
+              <span class="stats__label">Xuất phát &amp; về đích</span>
+              <span class="stats__value">Thung Lũng Tình Yêu – TTC World</span>
+            </li>
+            <li>
+              <span class="stats__label">Cự ly nhóm chạy</span>
+              <span class="stats__value">15K · 55K · 85K</span>
+            </li>
+            <li>
+              <span class="stats__label">Quy mô</span>
+              <span class="stats__value">18 người</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page page--dark" id="giai-chay">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">02</span>
+            <div>
+              <p class="eyebrow">Giải chạy · Thứ 7, 07.11.2026</p>
+              <h2>Ba cự ly của nhóm</h2>
+            </div>
+          </header>
+
+          <div class="dist">
+            <article class="dist__card">
+              <p class="dist__km">15<small>km</small></p>
+              <p class="dist__tag">Tỉnh thức giữa đường hoa</p>
+              <dl class="dist__facts">
+                <div><dt>Xuất phát</dt><dd>08:30</dd></div>
+                <div><dt>Cut-off (COT)</dt><dd>6 giờ 30 phút · ~15:00</dd></div>
+                <div><dt>Độ tuổi</dt><dd>Từ 14 tuổi</dd></div>
+              </dl>
+              <p class="dist__desc">
+                Rừng thông, dốc vừa phải, vài đoạn dã quỳ. Hợp người chạy road muốn thử trail.
+              </p>
+            </article>
+
+            <article class="dist__card">
+              <p class="dist__km">55<small>km</small></p>
+              <p class="dist__tag">Self Shift · Ultra đầu đời</p>
+              <dl class="dist__facts">
+                <div><dt>Xuất phát</dt><dd>04:30</dd></div>
+                <div><dt>Cut-off (COT)</dt><dd>16 giờ 30 phút · ~21:00</dd></div>
+                <div><dt>Cut-off CP2</dt><dd>11:30</dd></div>
+                <div><dt>Cut-off CP7</dt><dd>15:30</dd></div>
+                <div><dt>Độ tuổi</dt><dd>Từ 18 tuổi</dd></div>
+              </dl>
+              <p class="dist__desc">
+                Đón bình minh trên đỉnh dốc Radar, qua rừng thông, đồi nông nghiệp và thác Tàm Thàm.
+              </p>
+            </article>
+
+            <article class="dist__card">
+              <p class="dist__km">85<small>km</small></p>
+              <p class="dist__tag">Hành trình đổi mình sâu nhất</p>
+              <dl class="dist__facts">
+                <div><dt>Xuất phát</dt><dd>03:00</dd></div>
+                <div><dt>Cut-off (COT)</dt><dd>21 giờ · 00:00</dd></div>
+                <div><dt>Cut-off CP2</dt><dd>09:00</dd></div>
+                <div><dt>Cut-off CP4</dt><dd>14:00</dd></div>
+                <div><dt>Cut-off CP7</dt><dd>19:30</dd></div>
+                <div><dt>Độ tuổi</dt><dd>Từ 18 tuổi</dd></div>
+              </dl>
+              <p class="dist__desc">
+                Bình minh trên Langbiang (km 15–20), rừng già Bidoup trơn và kỹ thuật (km 35–45),
+                đồi Đạ Sar (km 55–65). Phần khó dồn ở nửa đầu.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="subhead">Sáng race day: giờ nên có mặt ở Thung Lũng Tình Yêu</h3>
+          <div class="arrive">
+            <div class="arrive__item">
+              <span class="arrive__km">85K</span>
+              <span class="arrive__time">~01:45</span>
+              <span class="arrive__note">Gửi đồ 01:30–02:30 · khởi động 02:20</span>
+            </div>
+            <div class="arrive__item">
+              <span class="arrive__km">55K</span>
+              <span class="arrive__time">~03:15</span>
+              <span class="arrive__note">Gửi đồ 03:00–04:00 · khởi động 03:50</span>
+            </div>
+            <div class="arrive__item">
+              <span class="arrive__km">15K</span>
+              <span class="arrive__time">~07:15</span>
+              <span class="arrive__note">Gửi đồ 07:00–08:00 · khởi động 07:50</span>
+            </div>
+          </div>
+          <p class="note">
+            Ba nhóm có mặt ở ba giờ khác nhau, bãi giữ xe mở từ 01:30.
+            Cách đưa đón ra điểm xuất phát: <span class="placeholder">[xe đoàn / taxi / Grab — chờ chốt]</span>
+          </p>
+
+          <div class="cols cols--info">
+            <div class="block">
+              <h3>Nhận race kit</h3>
+              <p>
+                <strong>Thứ 6, 06.11 · 08:00 – 21:00</strong> tại Expo, Đà Lạt.
+                Mang <strong>email QR</strong> và <strong>CCCD/VNeID</strong> (bản cứng hoặc ảnh chụp).
+                Nhận hộ: cần mã QR của VĐV, CCCD của VĐV và CCCD người nhận.
+              </p>
+            </div>
+            <div class="block">
+              <h3>Trạm tiếp sức (CP)</h3>
+              <p>
+                Nước lọc, điện giải, chuối, dưa hấu, khoai tây luộc, mì/cháo ly, gel.
+                CP cũng ghi nhận thời gian, quá cut-off sẽ bị dừng.
+              </p>
+            </div>
+            <div class="block">
+              <h3>Bảo hiểm</h3>
+              <p>
+                BTC mua bảo hiểm tai nạn 100.000.000đ/người ngày 07–08.11.
+                Thông tin CCCD và ngày sinh khi đăng ký phải chính xác.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="subhead">Đồ bắt buộc</h3>
+          <p class="hint">
+            BTC kiểm tra bất chợt trên đường chạy. Thiếu đồ bắt buộc có thể bị cấm chạy
+            hoặc hủy kết quả.
+          </p>
+          <div class="table-wrap" role="region" aria-label="Vật dụng bắt buộc theo cự ly" tabindex="0">
+            <table class="data-table gear">
+              <thead>
+                <tr>
+                  <th scope="col">Vật dụng</th>
+                  <th scope="col">15K</th>
+                  <th scope="col">55K</th>
+                  <th scope="col">85K</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Điện thoại di động</td><td class="m">●</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Bình / túi nước chứa đủ 1 lít</td><td class="m">●</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Đồng hồ GPS đã tải đường chạy</td><td class="r">○</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Đèn đeo đầu + pin dự phòng</td><td>—</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Áo mưa</td><td>—</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Chăn cách nhiệt</td><td class="r">○</td><td class="m">●</td><td class="m">●</td></tr>
+                <tr><td>Túi sơ cứu</td><td>—</td><td class="r">○</td><td class="m">●</td></tr>
+                <tr><td>Thức ăn dự trữ · gel · thanh năng lượng</td><td>—</td><td class="r">○</td><td class="r">○</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="legend"><span class="m">●</span> Bắt buộc <span class="r">○</span> Khuyến khích</p>
+
+          <h3 class="subhead">Mang thêm</h3>
+          <ul class="check-grid">
+            <li>CCCD/VNeID + email QR nhận race kit</li>
+            <li>Giày trail + tất dự phòng</li>
+            <li>Áo ấm cho sáng sớm và sau race</li>
+            <li>Bộ đồ thay để gửi đồ</li>
+            <li>Sạc dự phòng</li>
+            <li>Vaseline / băng dán chống phồng</li>
+            <li class="placeholder">[+ item nhóm]</li>
+          </ul>
+
+          <p class="links">
+            <a href="https://lamdongtrail.vn/" target="_blank" rel="noopener">Website giải ↗</a>
+            <a href="https://lamdongtrail.vn/van-dong-vien/" target="_blank" rel="noopener">Điều lệ &amp; lịch BTC ↗</a>
+            <a href="https://lamdongtrail.vn/cu-ly-15km/" target="_blank" rel="noopener">15K ↗</a>
+            <a href="https://lamdongtrail.vn/cu-ly-55km/" target="_blank" rel="noopener">55K ↗</a>
+            <a href="https://lamdongtrail.vn/cu-ly-85km/" target="_blank" rel="noopener">85K ↗</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="page" id="thanh-vien">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">03</span>
+            <div>
+              <p class="eyebrow">Danh sách tham gia</p>
+              <h2>Ai đi cùng?</h2>
+            </div>
+          </header>
+          <p class="lead">
+            18 thành viên · xe đi 15 · xe về 15.
+            Thảo đi xe riêng; Tú và Thuỳ đi xe riêng chiều đi; Luật và Lộc về bằng máy bay.
+          </p>
+          <div class="table-wrap" role="region" aria-label="Danh sách thành viên" tabindex="0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Họ tên</th>
+                  <th scope="col">Tên gọi</th>
+                  <th scope="col">Năm sinh</th>
+                  <th scope="col">Cự ly</th>
+                  <th scope="col">Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>Nguyễn Thế Lộc</td><td>Lộc</td><td>1992</td><td>15K</td><td>Về bằng máy bay</td></tr>
+                <tr><td>2</td><td>Trần Văn Thành</td><td>Thành</td><td>1998</td><td>55K</td><td>—</td></tr>
+                <tr><td>3</td><td>Nguyễn Công Luật</td><td>Luật</td><td>1994</td><td>55K</td><td><strong>Trip Leader</strong> · Về bằng máy bay</td></tr>
+                <tr><td>4</td><td>Huỳnh Nhựt Thảo</td><td>Thảo</td><td>1999</td><td class="placeholder">Chưa chốt</td><td>Đi xe riêng</td></tr>
+                <tr><td>5</td><td>Lê Đức Tuyển</td><td>Timmie</td><td>1992</td><td>15K</td><td>—</td></tr>
+                <tr><td>6</td><td>Thái Thị Ý Nhi</td><td>Vợ Timmie</td><td>1994</td><td>15K</td><td>—</td></tr>
+                <tr><td>7</td><td>Quan Minh Trí</td><td>Trí Quan</td><td>2001</td><td>15K</td><td><strong>Villa 2 Leader</strong></td></tr>
+                <tr><td>8</td><td>Nguyễn Ngọc Diễm Quỳnh</td><td>Dori</td><td>2003</td><td>15K</td><td>—</td></tr>
+                <tr><td>9</td><td>Nguyễn Lữ Minh Thy</td><td>Thy</td><td>1997</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
+                <tr><td>10</td><td>Phạm Hải Đăng</td><td>Đăng</td><td>2000</td><td>55K</td><td>—</td></tr>
+                <tr><td>11</td><td>Nguyễn Lê Tú</td><td>Tú</td><td>1999</td><td>85K</td><td>Chiều đi: xe riêng</td></tr>
+                <tr><td>12</td><td>Đinh Thị Phương Thùy</td><td>Thuỳ</td><td>2000</td><td class="placeholder">Chưa chốt</td><td>Chiều đi: xe riêng</td></tr>
+                <tr><td>13</td><td>Nguyễn Thị Mỹ Lệ</td><td>Lệ</td><td>1989</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
+                <tr><td>14</td><td>Đào Như Quỳnh</td><td>Luna</td><td>2002</td><td class="placeholder">Chưa chốt</td><td><strong>Villa 1 Leader</strong></td></tr>
+                <tr><td>15</td><td>Phạm Thị Quỳnh Anh</td><td>Amber · Bơ</td><td>1997</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
+                <tr><td>16</td><td>Đỗ Tuấn Thành</td><td>Bịp</td><td>1996</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
+                <tr><td>17</td><td>Nguyễn Duy Quân</td><td>Quân</td><td>2002</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
+                <tr><td>18</td><td>Đậu Thị Ngọc Linh</td><td>Linh Đậu</td><td>2000</td><td>55K</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="page page--dark" id="di-chuyen">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">04</span>
+            <div>
+              <p class="eyebrow">Di chuyển</p>
+              <h2>Xe Thành Bưởi · giường nằm</h2>
+            </div>
+          </header>
+          <p class="lead">
+            Đi xe giường nằm Thành Bưởi 34 giường (chuyến thường), đoàn đặt giường riêng.
+            TP.HCM – Đà Lạt khoảng 300km, mất 6–8 tiếng.
+          </p>
+          <div class="cols">
+            <div class="block">
+              <h3>Chiều đi</h3>
+              <dl class="kv">
+                <div><dt>Ngày</dt><dd>Tối thứ 5 · 05.11.2026</dd></div>
+                <div><dt>Nhóm 1 · 7 khách</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%A0nh+B%C6%B0%E1%BB%9Fi+L%C3%AA+H%E1%BB%93ng+Phong+TP.HCM" target="_blank" rel="noopener">VP Thành Bưởi Lê Hồng Phong</a> · có mặt 22:00, đi xe trung chuyển<span class="kv__people">Linh Đậu, Trí Quan, Dori, Thy, Lệ, Luna, Quân</span></dd></div>
+                <div><dt>Nhóm 2 · 8 khách</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%A0nh+B%C6%B0%E1%BB%9Fi+%C4%90i%E1%BB%87n+Bi%C3%AAn+Ph%E1%BB%A7+TP.HCM" target="_blank" rel="noopener">VP Thành Bưởi Điện Biên Phủ</a> · có mặt 22:30, xe đón ~22:45<span class="kv__people">Timmie, Vợ Timmie, Luật, Lộc, Bơ, Bịp, Đăng, Thành</span></dd></div>
+                <div><dt>Số khách</dt><dd>15 · Thảo, Tú, Thuỳ đi xe riêng</dd></div>
+                <div><dt>Dự kiến đến</dt><dd>~05:00 – 06:00 sáng 06.11 · Đà Lạt (ước tính)</dd></div>
+              </dl>
+            </div>
+            <div class="block">
+              <h3>Chiều về</h3>
+              <dl class="kv">
+                <div><dt>Điểm đón</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=32%2F23+Mai+Anh+%C4%90%C3%A0o+%C4%90%C3%A0+L%E1%BA%A1t" target="_blank" rel="noopener">32/23 Mai Anh Đào, Đà Lạt</a> · ngay Villa 1</dd></div>
+                <div><dt>Giờ xuất phát</dt><dd>Thứ 2 · 09.11 · 12:00</dd></div>
+                <div><dt>Số khách</dt><dd>15 · Luật, Lộc về bằng máy bay</dd></div>
+                <div><dt>Giường</dt><dd>1A, 3A, 4A, 5A, 6A, 7A, 8A, 9A, 11A, 12A · 4B, 5B, 6B, 7B, 9B</dd></div>
+                <div><dt>Giá</dt><dd>325.000đ/giường · tổng 4.875.000đ</dd></div>
+                <div><dt>Dự kiến về</dt><dd>~18:00 – 20:00 · TP.HCM (ước tính 6–8 tiếng)</dd></div>
+              </dl>
+              <p class="hint">Có mặt trước 11:30.</p>
+            </div>
+          </div>
+
+          <h3 class="subhead">Sơ đồ giường</h3>
+          <div class="seatmap">
+            <div class="seatmap__tabs" role="tablist" aria-label="Chọn chiều xe">
+              <button class="seatmap__tab" type="button" role="tab" id="seat-tab-di" aria-controls="seat-panel" aria-selected="true" data-trip="di">Chiều đi · 05.11</button>
+              <button class="seatmap__tab" type="button" role="tab" id="seat-tab-ve" aria-controls="seat-panel" aria-selected="false" tabindex="-1" data-trip="ve">Chiều về · 09.11</button>
+            </div>
+            <div class="seatmap__panel" id="seat-panel" role="tabpanel" aria-labelledby="seat-tab-di" tabindex="0">
+              <div class="seatmap__bar" data-seat-bar>
+                <ul class="seatmap__legend">
+                  <li><span class="seatmap__swatch seatmap__swatch--taken"></span>Đoàn · đã xếp tên</li>
+                  <li><span class="seatmap__swatch seatmap__swatch--booked"></span>Đoàn · chưa xếp</li>
+                  <li><span class="seatmap__swatch seatmap__swatch--other"></span>Khách khác</li>
+                </ul>
+                <p class="seatmap__count"><strong data-seat-booked>15</strong> giường của đoàn · <strong data-seat-count>15</strong>/<span data-seat-total>15</span> đã xếp tên</p>
+              </div>
+              <p class="seatmap__empty" data-seat-empty hidden></p>
+              <div class="bus" data-bus></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="cho-o">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">05</span>
+            <div>
+              <p class="eyebrow">Chỗ ở</p>
+              <h2>2 villa · chia phòng</h2>
+            </div>
+          </header>
+          <div class="cols">
+            <div class="block">
+              <h3>Chỗ của đoàn</h3>
+              <dl class="kv">
+                <div><dt>Villa 1</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=32%2F23+Mai+Anh+%C4%90%C3%A0o+%C4%90%C3%A0+L%E1%BA%A1t" target="_blank" rel="noopener">32/23 Mai Anh Đào, Đà Lạt</a> · 8 phòng</dd></div>
+                <div><dt>Villa 2</dt><dd><a href="https://maps.app.goo.gl/UTd4Ga1xUVcxpvev6" target="_blank" rel="noopener">32/14 Mai Anh Đào, Đà Lạt</a> · Say Homestay · 4 phòng ngủ</dd></div>
+              </dl>
+              <p class="hint">3 đêm: 06 → 09.11 · tới Đà Lạt ~5–6h sáng, cần hỏi gửi đồ / nhận phòng sớm.</p>
+            </div>
+          </div>
+
+          <h3 class="subhead">Sơ đồ phòng</h3>
+          <ul class="villas__legend">
+            <li><span class="villas__swatch villas__swatch--taken"></span>Đã chốt</li>
+            <li><span class="villas__swatch villas__swatch--empty"></span>Chưa xếp</li>
+          </ul>
+          <div class="villas" data-villas></div>
+
+          <h3 class="subhead">Bản đồ</h3>
+          <div class="map">
+            <iframe
+              class="map__frame"
+              title="Đường đi Villa 1 → Villa 2 → Thung Lũng Tình Yêu"
+              src="https://maps.google.com/maps?saddr=32%2F23+Mai+Anh+%C4%90%C3%A0o,+%C4%90%C3%A0+L%E1%BA%A1t&amp;daddr=11.9746817,108.4433037+to:Thung+L%C5%A9ng+T%C3%ACnh+Y%C3%AAu,+%C4%90%C3%A0+L%E1%BA%A1t&amp;dirflg=w&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+            <ul class="map__routes">
+              <li>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=32%2F23+Mai+Anh+%C4%90%C3%A0o+%C4%90%C3%A0+L%E1%BA%A1t&amp;destination=11.9746817%2C108.4433037&amp;travelmode=walking" target="_blank" rel="noopener">
+                  <span class="map__step">A → B</span>
+                  <strong>Villa 1 → Villa 2</strong>
+                  <span>Cùng hẻm 32 Mai Anh Đào · đi bộ</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=32%2F23+Mai+Anh+%C4%90%C3%A0o+%C4%90%C3%A0+L%E1%BA%A1t&amp;destination=Thung+L%C5%A9ng+T%C3%ACnh+Y%C3%AAu+%C4%90%C3%A0+L%E1%BA%A1t&amp;travelmode=walking" target="_blank" rel="noopener">
+                  <span class="map__step">A → C</span>
+                  <strong>Villa 1 → Thung Lũng Tình Yêu</strong>
+                  <span>Xuất phát &amp; về đích · race day</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=11.9746817%2C108.4433037&amp;destination=Thung+L%C5%A9ng+T%C3%ACnh+Y%C3%AAu+%C4%90%C3%A0+L%E1%BA%A1t&amp;travelmode=walking" target="_blank" rel="noopener">
+                  <span class="map__step">B → C</span>
+                  <strong>Villa 2 → Thung Lũng Tình Yêu</strong>
+                  <span>Xuất phát &amp; về đích · race day</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="page page--dark" id="lich-trinh">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">06</span>
+            <div>
+              <p class="eyebrow">Lịch trình · theo lịch BTC</p>
+              <h2>Timeline chuyến đi</h2>
+            </div>
+          </header>
+          <ol class="timeline">
+            <li class="timeline__item">
+              <p class="timeline__day">Thứ 5 · 05.11 — Lên đường</p>
+              <ul class="sched">
+                <li><time>22:00</time><span>Nhóm 1 có mặt VP Lê Hồng Phong (xe trung chuyển)</span></li>
+                <li><time>22:30</time><span>Nhóm 2 có mặt VP Điện Biên Phủ</span></li>
+                <li class="is-key"><time>22:45</time><span>Xe Thành Bưởi đón</span></li>
+                <li><time>—</time><span>Ngủ trên xe</span></li>
+              </ul>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__day">Thứ 6 · 06.11 — Expo</p>
+              <ul class="sched">
+                <li><time>~05:30</time><span>Tới Đà Lạt (ước tính)</span></li>
+                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">[Gửi đồ / nhận phòng sớm]</span></li>
+                <li class="is-key"><time>08:00</time><span>Mở Expo · nhận race kit (tới 21:00)</span></li>
+                <li><time>10:00</time><span>Lễ khai mạc</span></li>
+                <li class="is-key"><time>14:00</time><span>Race briefing (tóm tắt đường chạy)</span></li>
+                <li><time>14:30</time><span>Talkshow “Sweepers – Họ là ai”</span></li>
+                <li><time>15:30</time><span>Talkshow “Chill with Trail”</span></li>
+                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Ăn tối pre-race, ngủ sớm</span></li>
+                <li><time>21:00</time><span>Đóng Expo</span></li>
+              </ul>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__day">Thứ 7 · 07.11 — Race day</p>
+              <ul class="sched">
+                <li><time>01:30</time><span>Mở bãi xe · gửi đồ 85K</span></li>
+                <li class="is-key"><time>03:00</time><span>Xuất phát 85K</span></li>
+                <li><time>03:00</time><span>Gửi đồ 55K</span></li>
+                <li class="is-key"><time>04:30</time><span>Xuất phát 55K</span></li>
+                <li><time>07:00</time><span>Gửi đồ 15K</span></li>
+                <li class="is-key"><time>08:30</time><span>Xuất phát 15K</span></li>
+                <li><time>09:30</time><span>Khu phục hồi: ngâm chân, giãn cơ, ẩm thực (tới 22:30)</span></li>
+                <li><time>15:30</time><span>Trao giải</span></li>
+                <li><time>00:00</time><span>Đóng đường chạy tất cả cự ly</span></li>
+              </ul>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__day">Chủ nhật · 08.11 — Nghỉ / chơi Đà Lạt</p>
+              <ul class="sched">
+                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Ngủ bù · ăn sáng</span></li>
+                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">[Hoạt động tự do]</span></li>
+              </ul>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__day">Thứ 2 · 09.11 — Về Sài Gòn</p>
+              <ul class="sched">
+                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Trả phòng</span></li>
+                <li class="sched__group"><time>11:30</time><span>Có mặt tại 32/23 Mai Anh Đào (nên tới sớm)</span></li>
+                <li class="is-key"><time>12:00</time><span>Xe Thành Bưởi xuất bến</span></li>
+                <li><time>~18:00</time><span>Tới TP.HCM (dự kiến 18:00 – 20:00)</span></li>
+              </ul>
+            </li>
+          </ol>
+          <p class="note">
+            Giờ in đậm là mốc quan trọng của BTC. Dòng in nghiêng là kế hoạch riêng của đoàn, chờ chốt.
+          </p>
+        </div>
+      </section>
+
+      <section class="page" id="an-uong">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">07</span>
+            <div>
+              <p class="eyebrow">Ăn uống</p>
+              <h2>Cơm nước</h2>
+            </div>
+          </header>
+          <div class="cols">
+            <div class="block">
+              <h3>Pre-race · tối thứ 6</h3>
+              <p class="placeholder">[Quán · giờ đặt bàn]</p>
+              <p class="hint">Ăn quen, nhiều tinh bột, tránh đồ lạ và quá cay.</p>
+            </div>
+            <div class="block">
+              <h3>Tại khu đích</h3>
+              <p>Gian hàng ẩm thực và khu phục hồi mở 09:30 – 22:30 thứ 7.</p>
+            </div>
+            <div class="block">
+              <h3>Ghi chú</h3>
+              <p class="placeholder">[Dị ứng · ăn chay · budget]</p>
+            </div>
+          </div>
+
+          <h3 class="subhead">Đặc sản BTC gợi ý</h3>
+          <ul class="food">
+            <li><strong>Lẩu gà lá é</strong><span>Đà Lạt 668 · 2B Chu Văn An, P.3 — Tao Ngộ · 28B Hải Thượng, P.6</span></li>
+            <li><strong>Lẩu bò</strong><span>Thanh Tâm · 14 Nguyễn Thị Định, P.5</span></li>
+            <li><strong>Bánh căn</strong><span>Nhà Chung · số 1 Nhà Chung, P.3</span></li>
+            <li><strong>Nem nướng</strong><span>Bà Hùng · 328 Phan Đình Phùng, P.2</span></li>
+            <li><strong>Bánh mì xíu mại</strong><span>Cô Sương · 14 Ánh Sáng, P.1</span></li>
+            <li><strong>Bánh canh</strong><span>Xuân An · 15A Nhà Chung, P.3</span></li>
+            <li><strong>Cơm canh atiso</strong><span>Như Ý · 143B Phan Đình Phùng, P.2</span></li>
+            <li><strong>Bánh tráng nướng</strong><span>Quanh hồ Xuân Hương · chợ đêm</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page page--dark" id="thu-chi">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">08</span>
+            <div>
+              <p class="eyebrow">Thu chi</p>
+              <h2>Ngân sách chung</h2>
+            </div>
+          </header>
+          <div
+            class="budget"
+            data-budget
+            data-sheet="1sfTxzfASx_a17GfugQTw7myAKDHDIR-Qci-YHCDt1U4"
+            data-gid-chi="1300028401"
+            data-gid-thu="534769142"
+            data-gid-summary="50102388"
+          >
+            <ul class="stats budget__stats">
+              <li>
+                <span class="stats__label">Tổng thu</span>
+                <span class="stats__value" data-budget-paid>—</span>
+                <span class="hint" data-budget-paid-hint></span>
+              </li>
+              <li>
+                <span class="stats__label">Tổng chi</span>
+                <span class="stats__value" data-budget-total>—</span>
+              </li>
+              <li>
+                <span class="stats__label">Quỹ còn lại</span>
+                <span class="stats__value budget__balance" data-budget-balance>—</span>
+                <span class="hint" data-budget-balance-hint>Tổng thu − Tổng chi</span>
+              </li>
+              <li>
+                <span class="stats__label">Số khoản</span>
+                <span class="stats__value" data-budget-count>—</span>
+                <span class="hint" data-budget-last></span>
+              </li>
+            </ul>
+
+            <div class="table-wrap" role="region" aria-label="Bảng chi tiêu" tabindex="0">
+              <table class="data-table budget__table">
+                <thead>
+                  <tr>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Hoạt động</th>
+                    <th scope="col" class="num">Số tiền</th>
+                    <th scope="col" class="num">Số người</th>
+                    <th scope="col" class="num">Mỗi người</th>
+                  </tr>
+                </thead>
+                <tbody data-budget-rows>
+                  <tr><td colspan="5" class="placeholder">Đang tải từ Google Sheet…</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="budget__more" data-budget-more aria-expanded="false" hidden></button>
+
+            <h3 class="subhead">Mỗi người · dư / (thiếu)</h3>
+            <ul class="budget__people" data-budget-people></ul>
+
+            <p class="hint budget__status" data-budget-status>
+              Số liệu lấy trực tiếp từ
+              <a href="https://docs.google.com/spreadsheets/d/1sfTxzfASx_a17GfugQTw7myAKDHDIR-Qci-YHCDt1U4/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet chi tiêu</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="luu-y">
+        <div class="page__inner">
+          <header class="page__head">
+            <span class="page__num">09</span>
+            <div>
+              <p class="eyebrow">Tham khảo</p>
+              <h2>Thông tin tham khảo</h2>
+            </div>
+          </header>
+          <div class="faq">
+            <details>
+              <summary>BIB và chip tính giờ</summary>
+              <p>
+                Đeo BIB trước ngực suốt cuộc đua, chip gắn sẵn trên BIB. Phải chạy qua hết
+                các thảm kiểm tra. Không được bán, cho hoặc đổi BIB: bị phát hiện sẽ hủy kết quả
+                cả hai người và cấm thi năm sau.
+              </p>
+            </details>
+            <details>
+              <summary>Gửi đồ</summary>
+              <p>
+                Gửi đúng khung giờ theo cự ly, mang BIB và giữ phiếu gửi đồ.
+                Không gửi trang sức, đồ điện tử, ví tiền.
+              </p>
+            </details>
+            <details>
+              <summary>Không xả rác</summary>
+              <p>
+                Vỏ gel, vỏ bánh giữ lại trong túi, tới CP mới bỏ vào thùng.
+                Bị phát hiện hoặc bị chụp ảnh xả rác sẽ không được ghi nhận thành tích.
+              </p>
+            </details>
+            <details>
+              <summary>Khi cần cứu hộ</summary>
+              <p>
+                Gọi hotline BTC in ở mặt sau BIB, hoặc đi tới CP gần nhất.
+              </p>
+            </details>
+            <details>
+              <summary>Điều kiện 85K</summary>
+              <p>
+                Phải từng hoàn thành ít nhất một giải 42km (road hoặc trail) trong 24 tháng
+                tính tới 06.11.2026. Không chấp nhận virtual run.
+              </p>
+            </details>
+            <details>
+              <summary>Hotline BTC</summary>
+              <p>
+                <a href="tel:0968869509">096.886.9509</a> (09:00–17:00, thứ 2 – thứ 6) ·
+                <a href="mailto:support@lamdongtrail.vn">support@lamdongtrail.vn</a>
+              </p>
+            </details>
+            <details>
+              <summary>Liên hệ trong đoàn</summary>
+              <p class="placeholder">[SĐT trưởng đoàn · link group Zalo/Messenger]</p>
+            </details>
+          </div>
+          <p class="page-foot">Fraud Athletes · Lamdong Trail 2026</p>
+        </div>
+      </section>
+    </main>
+
+    <a class="to-menu" href="#home" aria-label="Về menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="4" width="6" height="6" />
+        <rect x="14" y="4" width="6" height="6" />
+        <rect x="4" y="14" width="6" height="6" />
+        <rect x="14" y="14" width="6" height="6" />
+      </svg>
+      <span>Menu</span>
+    </a>
+
+    <script src="./js/main.js" defer></script>
+    <script src="./js/seats.js" defer></script>
+    <script src="./js/rooms.js" defer></script>
+    <script src="./js/budget.js" defer></script>
+    <script src="./js/home-video.js" defer></script>
+  </body>
+</html>
