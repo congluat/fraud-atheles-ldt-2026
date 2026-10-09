@@ -345,11 +345,12 @@
             </div>
           </header>
           <p class="lead">
-            18 thành viên · xe đi 15 · xe về 15.
-            Thảo đi xe riêng; Tú và Thuỳ đi xe riêng chiều đi; Luật và Lộc về bằng máy bay.
+            18 thành viên · xe đi 17 · xe về 15.
+            Thảo đi xe riêng; Luật và Lộc về bằng máy bay.
           </p>
+          <div class="mem-filter" role="group" aria-label="Lọc theo cự ly" data-mem-filter></div>
           <div class="table-wrap" role="region" aria-label="Danh sách thành viên" tabindex="0">
-            <table class="data-table">
+            <table class="data-table members" data-members>
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -361,24 +362,24 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>1</td><td>Nguyễn Thế Lộc</td><td>Lộc</td><td>1992</td><td>15K</td><td>Về bằng máy bay</td></tr>
-                <tr><td>2</td><td>Trần Văn Thành</td><td>Thành</td><td>1998</td><td>55K</td><td>—</td></tr>
-                <tr><td>3</td><td>Nguyễn Công Luật</td><td>Luật</td><td>1994</td><td>55K</td><td><strong>Trip Leader</strong> · Về bằng máy bay</td></tr>
-                <tr><td>4</td><td>Huỳnh Nhựt Thảo</td><td>Thảo</td><td>1999</td><td class="placeholder">Chưa chốt</td><td>Đi xe riêng</td></tr>
-                <tr><td>5</td><td>Lê Đức Tuyển</td><td>Timmie</td><td>1992</td><td>15K</td><td>—</td></tr>
-                <tr><td>6</td><td>Thái Thị Ý Nhi</td><td>Vợ Timmie</td><td>1994</td><td>15K</td><td>—</td></tr>
-                <tr><td>7</td><td>Quan Minh Trí</td><td>Trí Quan</td><td>2001</td><td>15K</td><td><strong>Villa 2 Leader</strong></td></tr>
-                <tr><td>8</td><td>Nguyễn Ngọc Diễm Quỳnh</td><td>Dori</td><td>2003</td><td>15K</td><td>—</td></tr>
-                <tr><td>9</td><td>Nguyễn Lữ Minh Thy</td><td>Thy</td><td>1997</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
-                <tr><td>10</td><td>Phạm Hải Đăng</td><td>Đăng</td><td>2000</td><td>55K</td><td>—</td></tr>
-                <tr><td>11</td><td>Nguyễn Lê Tú</td><td>Tú</td><td>1999</td><td>85K</td><td>Chiều đi: xe riêng</td></tr>
-                <tr><td>12</td><td>Đinh Thị Phương Thùy</td><td>Thuỳ</td><td>2000</td><td class="placeholder">Chưa chốt</td><td>Chiều đi: xe riêng</td></tr>
-                <tr><td>13</td><td>Nguyễn Thị Mỹ Lệ</td><td>Lệ</td><td>1989</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
-                <tr><td>14</td><td>Đào Như Quỳnh</td><td>Luna</td><td>2002</td><td class="placeholder">Chưa chốt</td><td><strong>Villa 1 Leader</strong></td></tr>
-                <tr><td>15</td><td>Phạm Thị Quỳnh Anh</td><td>Amber · Bơ</td><td>1997</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
-                <tr><td>16</td><td>Đỗ Tuấn Thành</td><td>Bịp</td><td>1996</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
-                <tr><td>17</td><td>Nguyễn Duy Quân</td><td>Quân</td><td>2002</td><td class="placeholder">Chưa chốt</td><td>—</td></tr>
-                <tr><td>18</td><td>Đậu Thị Ngọc Linh</td><td>Linh Đậu</td><td>2000</td><td>55K</td><td>—</td></tr>
+                <tr data-km="15K"><td class="mem__no">1</td><td class="mem__full">Nguyễn Thế Lộc</td><td class="mem__nick">Lộc</td><td class="mem__year">1992</td><td class="mem__km"><span class="km km--15k">15K</span></td><td class="mem__note">Về bằng máy bay</td></tr>
+                <tr data-km="55K"><td class="mem__no">2</td><td class="mem__full">Trần Văn Thành</td><td class="mem__nick">Thành</td><td class="mem__year">1998</td><td class="mem__km"><span class="km km--55k">55K</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="55K" class="is-leader is-leader--trip"><td class="mem__no">3</td><td class="mem__full">Nguyễn Công Luật</td><td class="mem__nick">Luật</td><td class="mem__year">1994</td><td class="mem__km"><span class="km km--55k">55K</span></td><td class="mem__note"><span class="role role--trip"><span class="role__icon" aria-hidden="true">★</span>Trip Leader</span> · Về bằng máy bay</td></tr>
+                <tr data-km="none"><td class="mem__no">4</td><td class="mem__full">Huỳnh Nhựt Thảo</td><td class="mem__nick">Thảo</td><td class="mem__year">1999</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note">Đi xe riêng</td></tr>
+                <tr data-km="15K" class="is-leader is-leader--food"><td class="mem__no">5</td><td class="mem__full">Lê Đức Tuyển</td><td class="mem__nick">Timmie</td><td class="mem__year">1992</td><td class="mem__km"><span class="km km--15k">15K</span></td><td class="mem__note"><span class="role role--food"><span class="role__icon" aria-hidden="true">♨</span>Food Leader</span></td></tr>
+                <tr data-km="15K"><td class="mem__no">6</td><td class="mem__full">Thái Thị Ý Nhi</td><td class="mem__nick">Vợ Timmie</td><td class="mem__year">1994</td><td class="mem__km"><span class="km km--15k">15K</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="15K" class="is-leader is-leader--villa"><td class="mem__no">7</td><td class="mem__full">Quan Minh Trí</td><td class="mem__nick">Trí Quan</td><td class="mem__year">2001</td><td class="mem__km"><span class="km km--15k">15K</span></td><td class="mem__note"><span class="role role--villa"><span class="role__icon" aria-hidden="true">⌂</span>Villa 2 Leader</span></td></tr>
+                <tr data-km="15K"><td class="mem__no">8</td><td class="mem__full">Nguyễn Ngọc Diễm Quỳnh</td><td class="mem__nick">Dori</td><td class="mem__year">2003</td><td class="mem__km"><span class="km km--15k">15K</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none"><td class="mem__no">9</td><td class="mem__full">Nguyễn Lữ Minh Thy</td><td class="mem__nick">Thy</td><td class="mem__year">1997</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="55K"><td class="mem__no">10</td><td class="mem__full">Phạm Hải Đăng</td><td class="mem__nick">Đăng</td><td class="mem__year">2000</td><td class="mem__km"><span class="km km--55k">55K</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="85K"><td class="mem__no">11</td><td class="mem__full">Nguyễn Lê Tú</td><td class="mem__nick">Tú</td><td class="mem__year">1999</td><td class="mem__km"><span class="km km--85k">85K</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none"><td class="mem__no">12</td><td class="mem__full">Đinh Thị Phương Thùy</td><td class="mem__nick">Thuỳ</td><td class="mem__year">2000</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none"><td class="mem__no">13</td><td class="mem__full">Nguyễn Thị Mỹ Lệ</td><td class="mem__nick">Lệ</td><td class="mem__year">1989</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none" class="is-leader is-leader--villa"><td class="mem__no">14</td><td class="mem__full">Đào Như Quỳnh</td><td class="mem__nick">Luna</td><td class="mem__year">2002</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note"><span class="role role--villa"><span class="role__icon" aria-hidden="true">⌂</span>Villa 1 Leader</span></td></tr>
+                <tr data-km="none"><td class="mem__no">15</td><td class="mem__full">Phạm Thị Quỳnh Anh</td><td class="mem__nick">Amber · Bơ</td><td class="mem__year">1997</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none"><td class="mem__no">16</td><td class="mem__full">Đỗ Tuấn Thành</td><td class="mem__nick">Bịp</td><td class="mem__year">1996</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="none"><td class="mem__no">17</td><td class="mem__full">Nguyễn Duy Quân</td><td class="mem__nick">Quân</td><td class="mem__year">2002</td><td class="mem__km"><span class="km km--none">Không chạy</span></td><td class="mem__note mem__note--empty">—</td></tr>
+                <tr data-km="55K"><td class="mem__no">18</td><td class="mem__full">Đậu Thị Ngọc Linh</td><td class="mem__nick">Linh Đậu</td><td class="mem__year">2000</td><td class="mem__km"><span class="km km--55k">55K</span></td><td class="mem__note mem__note--empty">—</td></tr>
               </tbody>
             </table>
           </div>
@@ -404,8 +405,8 @@
               <dl class="kv">
                 <div><dt>Ngày</dt><dd>Tối thứ 5 · 05.11.2026</dd></div>
                 <div><dt>Nhóm 1 · 7 khách</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%A0nh+B%C6%B0%E1%BB%9Fi+L%C3%AA+H%E1%BB%93ng+Phong+TP.HCM" target="_blank" rel="noopener">VP Thành Bưởi Lê Hồng Phong</a> · có mặt 22:00, đi xe trung chuyển<span class="kv__people">Linh Đậu, Trí Quan, Dori, Thy, Lệ, Luna, Quân</span></dd></div>
-                <div><dt>Nhóm 2 · 8 khách</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%A0nh+B%C6%B0%E1%BB%9Fi+%C4%90i%E1%BB%87n+Bi%C3%AAn+Ph%E1%BB%A7+TP.HCM" target="_blank" rel="noopener">VP Thành Bưởi Điện Biên Phủ</a> · có mặt 22:30, xe đón ~22:45<span class="kv__people">Timmie, Vợ Timmie, Luật, Lộc, Bơ, Bịp, Đăng, Thành</span></dd></div>
-                <div><dt>Số khách</dt><dd>15 · Thảo, Tú, Thuỳ đi xe riêng</dd></div>
+                <div><dt>Nhóm 2 · 10 khách</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Th%C3%A0nh+B%C6%B0%E1%BB%9Fi+%C4%90i%E1%BB%87n+Bi%C3%AAn+Ph%E1%BB%A7+TP.HCM" target="_blank" rel="noopener">VP Thành Bưởi Điện Biên Phủ</a> · có mặt 22:30, xe đón ~22:45<span class="kv__people">Timmie, Vợ Timmie, Luật, Lộc, Tú, Thuỳ, Bơ, Bịp, Đăng, Thành</span></dd></div>
+                <div><dt>Số khách</dt><dd>17 · Thảo đi xe riêng</dd></div>
                 <div><dt>Dự kiến đến</dt><dd>~05:00 – 06:00 sáng 06.11 · Đà Lạt (ước tính)</dd></div>
               </dl>
             </div>
@@ -588,23 +589,50 @@
               <h2>Cơm nước</h2>
             </div>
           </header>
-          <div class="cols">
-            <div class="block">
-              <h3>Pre-race · tối thứ 6</h3>
-              <p class="placeholder">[Quán · giờ đặt bàn]</p>
-              <p class="hint">Ăn quen, nhiều tinh bột, tránh đồ lạ và quá cay.</p>
+          <div
+            class="food-plan"
+            data-food
+            data-sheet="1ELfpXl2KtBqegSa7QiP49l8-upXImQafaDBMCbnYM-o"
+            data-gid="1391766072"
+            data-gid-menu="109421293"
+            data-year="2026"
+          >
+            <div class="food-plan__days" data-food-days>
+              <p class="placeholder">Đang tải lịch ăn uống từ Google Sheet…</p>
             </div>
-            <div class="block">
-              <h3>Tại khu đích</h3>
-              <p>Gian hàng ẩm thực và khu phục hồi mở 09:30 – 22:30 thứ 7.</p>
-            </div>
-            <div class="block">
-              <h3>Ghi chú</h3>
-              <p class="placeholder">[Dị ứng · ăn chay · budget]</p>
-            </div>
+            <p class="hint">
+              Race day (thứ 7): gian hàng ẩm thực và khu phục hồi ở khu đích mở 09:30 – 22:30.
+              Lịch lấy trực tiếp từ
+              <a href="https://docs.google.com/spreadsheets/d/1ELfpXl2KtBqegSa7QiP49l8-upXImQafaDBMCbnYM-o/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet ăn uống</a>.
+            </p>
           </div>
 
-          <h3 class="subhead">Đặc sản BTC gợi ý</h3>
+          <section class="gala" id="gala-dinner" data-gala>
+            <h3 class="subhead">Gala Dinner · Bếp chú Việt</h3>
+            <p class="hint">
+              Tối chủ nhật 08.11 tại nhà · món đã chọn từ
+              <a href="https://www.facebook.com/bepchuviet" target="_blank" rel="noopener">menu Bếp chú Việt ↗</a>
+            </p>
+            <div data-gala-body>
+              <p class="placeholder">Đang tải menu…</p>
+            </div>
+            <button type="button" class="gala__menu-btn" data-menu-open hidden>Xem full menu</button>
+
+            <dialog class="menu" data-menu-dialog aria-labelledby="menu-title">
+              <div class="menu__panel">
+                <header class="menu__head">
+                  <h3 class="menu__title" id="menu-title">Menu Bếp chú Việt</h3>
+                  <button type="button" class="menu__close" data-menu-close aria-label="Đóng menu">×</button>
+                </header>
+                <div class="menu__search">
+                  <input type="search" placeholder="Tìm món: bò, lẩu, combo…" aria-label="Tìm món" data-menu-search />
+                </div>
+                <div class="menu__list" data-menu-list></div>
+              </div>
+            </dialog>
+          </section>
+
+          <h3 class="subhead">Gợi ý thêm từ BTC</h3>
           <ul class="food">
             <li><strong>Lẩu gà lá é</strong><span>Đà Lạt 668 · 2B Chu Văn An, P.3 — Tao Ngộ · 28B Hải Thượng, P.6</span></li>
             <li><strong>Lẩu bò</strong><span>Thanh Tâm · 14 Nguyễn Thị Định, P.5</span></li>
@@ -761,7 +789,11 @@
     <script src="./js/main.js" defer></script>
     <script src="./js/seats.js" defer></script>
     <script src="./js/rooms.js" defer></script>
+    <script src="./js/sheet.js" defer></script>
     <script src="./js/budget.js" defer></script>
+    <script src="./js/food.js" defer></script>
+    <script src="./js/members.js" defer></script>
+    <script src="./js/gear.js" defer></script>
     <script src="./js/home-video.js" defer></script>
   </body>
 </html>

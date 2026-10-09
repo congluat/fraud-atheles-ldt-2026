@@ -4,18 +4,13 @@
  *  - Thu:      Ngày thu | <tên từng người> ... | Total
  *  - Tổng kết: dòng "Đã đóng" / "Đã xài" / "Dư / (Thiếu)" theo từng người,
  *              và các dòng "Tổng thu" / "Tổng chi" / "Quỹ còn lại" (giá trị ở cột 2).
- * data-sheet: id file (chia sẻ "ai có link đều xem được").
- * data-pub:   id "Xuất bản lên web" (2PACX-...), nếu có thì dùng thay data-sheet.
+ * data-sheet / data-pub: xem js/sheet.js.
  */
 (function () {
   const root = document.querySelector("[data-budget]");
   if (!root) return;
 
   const { sheet, pub, gidChi, gidThu, gidSummary } = root.dataset;
-  const csvUrl = (gid) =>
-    pub
-      ? `https://docs.google.com/spreadsheets/d/e/${pub}/pub?gid=${gid}&single=true&output=csv`
-      : `https://docs.google.com/spreadsheets/d/${sheet}/gviz/tq?tqx=out:csv&gid=${gid}`;
 
   const UNIT = 1000;
   const PEOPLE_FROM = 5;
@@ -28,34 +23,7 @@
   const moreBtn = $("[data-budget-more]");
   const statusEl = $("[data-budget-status]");
 
-  function parseCsv(text) {
-    const rows = [];
-    let row = [];
-    let cell = "";
-    let quoted = false;
-    text = text.replace(/^\uFEFF/, "");
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-      if (quoted) {
-        if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; }
-        else if (ch === '"') quoted = false;
-        else cell += ch;
-      } else if (ch === '"') quoted = true;
-      else if (ch === ",") { row.push(cell); cell = ""; }
-      else if (ch === "\n" || ch === "\r") {
-        if (ch === "\r" && text[i + 1] === "\n") i++;
-        row.push(cell); rows.push(row); row = []; cell = "";
-      } else cell += ch;
-    }
-    if (cell || row.length) { row.push(cell); rows.push(row); }
-    return rows;
-  }
-
-  const load = (gid) =>
-    fetch(csvUrl(gid), { cache: "no-store" }).then((res) => {
-      if (!res.ok) throw new Error(`gid ${gid}: HTTP ${res.status}`);
-      return res.text().then(parseCsv);
-    });
+  const load = (gid) => window.SheetCsv.load({ sheet, pub, gid });
 
   const toNumber = (s) => Number(String(s || "").replace(/[^\d.-]/g, "")) || 0;
   const money = (n) => `${Math.round(n).toLocaleString("vi-VN")}đ`;
@@ -172,22 +140,28 @@
           tr.dataset.extra = "";
         }
         tr.append(el("td", "budget__date", it.date));
-        const title = el("td");
+        const title = el("td", "budget__title");
         title.append(el("strong", null, it.title));
         if (it.skipped.length && it.skipped.length < people.length) {
           title.append(el("span", "budget__skip", `Không tính: ${it.skipped.map((p) => p.name).join(", ")}`));
         }
         tr.append(title);
-        tr.append(el("td", "num", money(it.amount)));
-        tr.append(el("td", "num", String(it.count)));
-        tr.append(el("td", "num", money(it.each)));
+        tr.append(el("td", "num budget__amount", money(it.amount)));
+        tr.append(el("td", "num budget__count", String(it.count)));
+        tr.append(el("td", "num budget__each", money(it.each)));
         return tr;
       })
     );
 
     const total = items.reduce((sum, it) => sum + it.amount, 0);
     const totalRow = el("tr", "budget__total");
-    totalRow.append(el("td"), el("td", null, "Tổng chi"), el("td", "num", money(total)), el("td"), el("td"));
+    totalRow.append(
+      el("td", "budget__date"),
+      el("td", "budget__title", "Tổng chi"),
+      el("td", "num budget__amount", money(total)),
+      el("td", "budget__count"),
+      el("td", "budget__each")
+    );
     rowsEl.append(totalRow);
 
     const extra = items.length - LIMIT;

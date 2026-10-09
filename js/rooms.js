@@ -42,15 +42,15 @@ const VILLAS = [
       {
         label: "Lầu 2",
         rooms: [
-          { no: 2, bed: "Giường 1m8", wc: "View kính góc L", who: ["Amber", "Bịp"] },
+          { no: 2, bed: "Giường 1m8", wc: "View kính góc L", who: ["Trí Quan", "Dori"] },
           { no: 4, bed: "Giường 1m6", wc: "Ban công", who: ["Tú", "Thuỳ"] },
         ],
       },
       {
         label: "Lầu 1",
         rooms: [
-          { no: 1, bed: "Giường 1m8", wc: "View kính góc L", who: ["Timmie", "Vợ Timmie"] },
-          { no: 3, bed: "Giường 1m6", wc: "Ban công", who: ["Trí Quan", "Dori"] },
+          { no: 1, bed: "Giường 1m8", wc: "View kính góc L", who: ["Amber", "Bịp"] },
+          { no: 3, bed: "Giường 1m6", wc: "Ban công", who: ["Timmie", "Vợ Timmie"] },
         ],
       },
       {
