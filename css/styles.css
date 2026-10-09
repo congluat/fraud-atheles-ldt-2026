@@ -1697,6 +1697,137 @@ a {
   color: var(--trail);
 }
 
+.budget__people li.is-clickable {
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.budget__people li.is-clickable:hover,
+.budget__people li.is-clickable:focus-visible {
+  outline: none;
+  background: color-mix(in srgb, var(--trail) 16%, transparent);
+  transform: translateY(-2px);
+}
+
+/* Popup chi tiết từng người */
+.person {
+  width: min(40rem, calc(100vw - 2rem));
+}
+
+.person__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+.person__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.person__stats li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.6rem 0.75rem;
+  background: color-mix(in srgb, var(--pine) 7%, transparent);
+}
+
+.person__stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.person__stat-value {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.person__stat-value.is-plus {
+  color: var(--moss);
+}
+
+.person__stat-value.is-minus {
+  color: #c0442a;
+}
+
+.person__block {
+  padding-top: 0.9rem;
+}
+
+.person__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.person__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--pine) 8%, transparent);
+}
+
+.person__date {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+.person__what {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.person__sub {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.person__amount {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.person__row--total {
+  border-bottom: 0;
+  border-top: 2px solid var(--trail);
+}
+
+.person__row--total .person__what {
+  font-weight: 700;
+}
+
+.person__skip {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .person__body {
+    padding-inline: 1rem;
+  }
+
+  .person__row {
+    grid-template-columns: 4.75rem 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .person__stat-value {
+    font-size: 1rem;
+  }
+}
+
 .budget__status {
   margin-top: 1.5rem !important;
 }
@@ -1947,11 +2078,15 @@ a.meal__where:focus-visible {
   gap: 0.75rem;
 }
 
-.gala__item-amount {
+.gala__item-qty {
   flex: none;
+  padding: 0.05rem 0.5rem;
+  font-family: var(--font-display);
   font-weight: 700;
+  font-size: 1.05rem;
   font-variant-numeric: tabular-nums;
-  color: var(--trail-deep);
+  color: var(--pine-deep);
+  background: var(--trail);
 }
 
 .gala__item-meta {
@@ -2169,6 +2304,150 @@ html:has(dialog.menu[open]) {
   .menu__search,
   .menu__list {
     padding-inline: 1rem;
+  }
+}
+
+/* Quán ngon quanh đây popup */
+.places {
+  margin-top: 2.5rem;
+}
+
+.places__tools {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.places .places__filter {
+  margin: 0;
+  gap: 0.35rem;
+}
+
+.places__filter .mem-filter__btn {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+}
+
+.places__count {
+  margin: 0;
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+.places__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--pine) 10%, transparent);
+}
+
+.place__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.place__name {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.place__rating {
+  flex: none;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--trail-deep);
+}
+
+.place__reviews {
+  font-weight: 500;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.place__dishes {
+  font-size: 0.9rem;
+}
+
+.place__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.place__tag {
+  padding: 0.05rem 0.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid color-mix(in srgb, var(--pine) 35%, transparent);
+  color: var(--pine);
+}
+
+.place__tag--near {
+  border-color: var(--trail);
+  background: var(--trail);
+  color: var(--pine-deep);
+}
+
+.place__km,
+.place__hours {
+  opacity: 0.7;
+}
+
+.place__addr {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.place__note {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--moss);
+}
+
+.place__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.15rem;
+}
+
+.place__link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--pine);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.place__link--dir {
+  color: var(--trail-deep);
+}
+
+.place[hidden] {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .places .places__filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scrollbar-width: none;
+  }
+
+  .places__filter .mem-filter__btn {
+    flex: none;
   }
 }
 

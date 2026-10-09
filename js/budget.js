@@ -96,10 +96,26 @@
   }
 
   function parseThu(rows) {
-    return rows.slice(1)
+    const header = rows[0] || [];
+    const totalCol = header.findIndex((h, i) => i > 0 && /^total$/i.test(String(h).trim()));
+    const names = header.slice(1, totalCol > 0 ? totalCol : undefined).map((s) => s.trim());
+    const rounds = rows.slice(1)
       .filter((r) => /\d/.test(cell(r, 0)))
-      .map((r) => ({ date: cell(r, 0), amount: toNumber(r[r.length - 1]) * UNIT }))
+      .map((r) => ({
+        date: cell(r, 0),
+        amount: toNumber(totalCol > 0 ? r[totalCol] : r[r.length - 1]) * UNIT,
+        each: names.map((_, i) => toNumber(r[i + 1]) * UNIT),
+      }))
       .filter((it) => it.amount > 0);
+    return { names, rounds };
+  }
+
+  /* Tên giữa các tab có thể lệch (vd. "Vợ Lộc" / "Vợ Luật") → khớp theo tên, không thấy thì theo thứ tự cột. */
+  const normName = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").trim();
+  function matchIndex(names, name, fallback) {
+    const i = names.findIndex((n) => normName(n) === normName(name));
+    if (i >= 0) return i;
+    return fallback < names.length ? fallback : -1;
   }
 
   function renderStats(chi, summary, rounds) {
@@ -178,7 +194,81 @@
     }
   }
 
-  function renderPeople(chi, summary) {
+  const balanceText = (n) => (n > 0 ? `Dư ${money(n)}` : n < 0 ? `(Thiếu ${money(-n)})` : "Đủ");
+
+  function renderPerson(p, i, chi, thu) {
+    const dialog = root.querySelector("[data-person-dialog]");
+    const body = dialog.querySelector("[data-person-body]");
+    dialog.querySelector("[data-person-title]").textContent = p.name;
+
+    const chiIdx = matchIndex(chi.people.map((c) => c.name), p.name, i);
+    const chiPerson = chi.people[chiIdx];
+    const spends = chiPerson ? chi.items.filter((it) => it.joined.includes(chiPerson)) : [];
+    const skipped = chiPerson ? chi.items.filter((it) => !it.joined.includes(chiPerson)) : [];
+
+    const thuIdx = thu ? matchIndex(thu.names, p.name, i) : -1;
+    const payments = thuIdx < 0 ? [] : thu.rounds
+      .map((r, n) => ({ round: n + 1, date: r.date, amount: r.each[thuIdx] }))
+      .filter((r) => r.amount > 0);
+
+    const paid = p.paid ?? payments.reduce((s, r) => s + r.amount, 0);
+    const spent = p.spent ?? spends.reduce((s, it) => s + it.each, 0);
+    const balance = p.balance ?? paid - spent;
+
+    const stats = el("ul", "person__stats");
+    [["Đã đóng", money(paid)], ["Đã xài", money(spent)], ["Dư / (Thiếu)", balanceText(balance)]].forEach(([k, v], n) => {
+      const li = el("li");
+      const value = el("strong", "person__stat-value", v);
+      if (n === 2) value.classList.add(balance > 0 ? "is-plus" : balance < 0 ? "is-minus" : "is-even");
+      li.append(el("span", "person__stat-label", k), value);
+      stats.append(li);
+    });
+
+    const block = (title, rows, total, empty) => {
+      const section = el("section", "person__block");
+      section.append(el("h4", "menu__group-title", title));
+      if (!rows.length) {
+        section.append(el("p", "placeholder", empty));
+        return section;
+      }
+      const ul = el("ul", "person__rows");
+      ul.append(...rows);
+      if (total != null) {
+        const li = el("li", "person__row person__row--total");
+        li.append(el("span", "person__date"), el("span", "person__what", "Tổng"), el("span", "person__amount", money(total)));
+        ul.append(li);
+      }
+      section.append(ul);
+      return section;
+    };
+
+    const payRows = payments.map((r) => {
+      const li = el("li", "person__row");
+      li.append(el("span", "person__date", r.date), el("span", "person__what", `Đợt ${r.round}`), el("span", "person__amount", money(r.amount)));
+      return li;
+    });
+
+    const spendRows = spends.map((it) => {
+      const li = el("li", "person__row");
+      const what = el("span", "person__what");
+      what.append(el("strong", null, it.title), el("span", "person__sub", `${money(it.amount)} ÷ ${it.count} người`));
+      li.append(el("span", "person__date", it.date), what, el("span", "person__amount", money(it.each)));
+      return li;
+    });
+
+    const parts = [
+      stats,
+      block(`Đã đóng · ${payments.length} lần`, payRows, payments.length ? payments.reduce((s, r) => s + r.amount, 0) : null, "Chưa đóng đợt nào."),
+      block(`Đã chi · ${spends.length} khoản`, spendRows, spends.length ? spends.reduce((s, it) => s + it.each, 0) : null, "Chưa có khoản chi nào."),
+    ];
+    if (skipped.length) {
+      parts.push(el("p", "hint person__skip", `Không tính: ${skipped.map((it) => `${it.title} (${it.date})`).join(", ")}`));
+    }
+    body.replaceChildren(...parts);
+    dialog.showModal();
+  }
+
+  function renderPeople(chi, summary, thu) {
     const people = summary
       ? summary.people
       : chi.people.map((p) => ({
@@ -188,9 +278,33 @@
           balance: null,
         }));
 
+    const dialog = root.querySelector("[data-person-dialog]");
+    if (dialog && !dialog.dataset.ready) {
+      dialog.dataset.ready = "1";
+      dialog.querySelector("[data-person-close]").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    }
+
     peopleEl.replaceChildren(
-      ...people.map((p) => {
+      ...people.map((p, i) => {
         const li = el("li");
+        if (dialog) {
+          li.classList.add("is-clickable");
+          li.tabIndex = 0;
+          li.setAttribute("role", "button");
+          li.setAttribute("aria-haspopup", "dialog");
+          li.setAttribute("aria-label", `Xem chi tiết đóng / chi của ${p.name}`);
+          const open = () => renderPerson(p, i, chi, thu);
+          li.addEventListener("click", open);
+          li.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open();
+            }
+          });
+        }
         li.append(el("span", "budget__name", p.name));
         const lines = el("dl", "budget__lines");
         const line = (k, v) => {
@@ -228,11 +342,11 @@
       : Promise.resolve(null);
 
   Promise.all([load(gidChi).then(parseChi), optional(gidSummary, parseSummary), optional(gidThu, parseThu)])
-    .then(([chi, summary, rounds]) => {
+    .then(([chi, summary, thu]) => {
       if (!chi.items.length) throw new Error("Tab Chi chưa có khoản nào");
-      renderStats(chi, summary, rounds);
+      renderStats(chi, summary, thu ? thu.rounds : null);
       renderItems(chi);
-      renderPeople(chi, summary);
+      renderPeople(chi, summary, thu);
     })
     .catch((err) => {
       console.warn("Không tải được sheet thu chi:", err);

@@ -3,7 +3,7 @@
  * Cột: Ngày | Buổi | Plan | Địa chỉ | Google Map. Ô Ngày chỉ ghi ở dòng đầu mỗi ngày.
  * Gala dinner: tab menu, phần chọn món nằm dưới bảng menu, bắt đầu từ dòng có ô "Danh mục":
  *   STT | Danh mục | Tên món | Số lượng | _ | Quy cách | Đơn giá | Thành tiền | Ghi chú
- *   dòng tổng: Tên món trống, Thành tiền = tổng, Ghi chú = bình quân / người.
+ *   (phần món đã chọn không hiện giá; full menu có giá). Dòng tổng: Tên món trống, Ghi chú chứa "… (N khách)".
  */
 (function () {
   const root = document.querySelector("[data-food]");
@@ -109,7 +109,6 @@
     const start = orderStart(rows);
     if (start < 0) return null;
     const items = [];
-    let total = 0;
     let note = "";
     rows.slice(start + 1).forEach((r) => {
       if (cell(r, 2)) {
@@ -118,16 +117,13 @@
           name: cell(r, 2),
           qty: cell(r, 3),
           spec: cell(r, 5),
-          price: toNumber(r[6]),
-          amount: toNumber(r[7]),
           note: cell(r, 8),
         });
-      } else if (toNumber(r[7])) {
-        total = toNumber(r[7]);
+      } else if (cell(r, 8)) {
         note = cell(r, 8);
       }
     });
-    return { items, total: total || items.reduce((s, it) => s + it.amount, 0), note };
+    return { items, note };
   }
 
   const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/\s+/g, " ").trim();
@@ -162,7 +158,8 @@
           li.classList.add("is-chosen");
           title.append(el("span", "menu__chosen", "Đã chọn"));
         }
-        top.append(title, el("span", "menu__item-price", it.price ? money(it.price) : ""));
+        top.append(title);
+        if (it.price) top.append(el("span", "menu__item-price", money(it.price)));
         li.append(top);
         if (it.spec) li.append(el("span", "menu__item-spec", it.spec));
         ul.append(li);
@@ -215,9 +212,9 @@
       li.append(el("span", "gala__stat-label", label), el("strong", "gala__stat-value", value));
       stats.append(li);
     };
-    stat("Tổng", money(order.total));
-    if (order.note) stat("Bình quân", order.note.replace(/^trung bình\s*/i, ""));
     stat("Số món", String(order.items.length));
+    const guests = (order.note.match(/(\d+)\s*khách/i) || [])[1];
+    if (guests) stat("Số khách", guests);
 
     const groups = new Map();
     order.items.forEach((it) => {
@@ -233,9 +230,10 @@
       items.forEach((it) => {
         const li = el("li", "gala__item");
         const top = el("div", "gala__item-top");
-        top.append(el("strong", "gala__item-name", it.name), el("span", "gala__item-amount", money(it.amount)));
-        const meta = [it.qty && `SL ${it.qty}`, it.spec, it.price && `đơn giá ${money(it.price)}`].filter(Boolean).join(" · ");
-        li.append(top, el("span", "gala__item-meta", meta));
+        top.append(el("strong", "gala__item-name", it.name));
+        if (it.qty) top.append(el("span", "gala__item-qty", `× ${it.qty}`));
+        li.append(top);
+        if (it.spec) li.append(el("span", "gala__item-meta", it.spec));
         if (it.note) li.append(el("span", "gala__item-note", it.note));
         ul.append(li);
       });

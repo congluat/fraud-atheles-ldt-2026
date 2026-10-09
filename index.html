@@ -632,6 +632,27 @@
             </dialog>
           </section>
 
+          <section class="places" data-places>
+            <h3 class="subhead">Quán ngon quanh đây</h3>
+            <p class="hint" data-places-summary>Quán local đặc sản Đà Lạt quanh villa và trung tâm.</p>
+            <button type="button" class="gala__menu-btn" data-places-open hidden>Mở danh sách quán</button>
+
+            <dialog class="menu places-dialog" data-places-dialog aria-labelledby="places-title">
+              <div class="menu__panel">
+                <header class="menu__head">
+                  <h3 class="menu__title" id="places-title">Quán ngon quanh đây</h3>
+                  <button type="button" class="menu__close" data-places-close aria-label="Đóng danh sách quán">×</button>
+                </header>
+                <div class="menu__search places__tools">
+                  <input type="search" placeholder="Tìm quán, món, đường: bánh căn, cá tầm, Phù Đổng…" aria-label="Tìm quán" data-places-search />
+                  <div class="mem-filter places__filter" role="group" aria-label="Lọc quán" data-places-filter></div>
+                  <p class="places__count" data-places-count aria-live="polite"></p>
+                </div>
+                <div class="menu__list places__list" data-places-list></div>
+              </div>
+            </dialog>
+          </section>
+
           <h3 class="subhead">Gợi ý thêm từ BTC</h3>
           <ul class="food">
             <li><strong>Lẩu gà lá é</strong><span>Đà Lạt 668 · 2B Chu Văn An, P.3 — Tao Ngộ · 28B Hải Thượng, P.6</span></li>
@@ -705,6 +726,16 @@
 
             <h3 class="subhead">Mỗi người · dư / (thiếu)</h3>
             <ul class="budget__people" data-budget-people></ul>
+
+            <dialog class="menu person" data-person-dialog aria-labelledby="person-title">
+              <div class="menu__panel">
+                <header class="menu__head">
+                  <h3 class="menu__title" id="person-title" data-person-title></h3>
+                  <button type="button" class="menu__close" data-person-close aria-label="Đóng">×</button>
+                </header>
+                <div class="person__body" data-person-body></div>
+              </div>
+            </dialog>
 
             <p class="hint budget__status" data-budget-status>
               Số liệu lấy trực tiếp từ
@@ -792,6 +823,7 @@
     <script src="./js/sheet.js" defer></script>
     <script src="./js/budget.js" defer></script>
     <script src="./js/food.js" defer></script>
+    <script src="./js/places.js" defer></script>
     <script src="./js/members.js" defer></script>
     <script src="./js/gear.js" defer></script>
     <script src="./js/home-video.js" defer></script>
