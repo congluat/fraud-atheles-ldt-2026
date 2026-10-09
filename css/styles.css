@@ -780,6 +780,35 @@ a {
   font-style: italic;
 }
 
+.sched__food time {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--moss-light);
+  opacity: 1;
+}
+
+.sched__map {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--trail);
+  text-decoration: none;
+}
+
+.sched__map:hover,
+.sched__map:focus-visible {
+  text-decoration: underline;
+}
+
+.sched:empty::before {
+  content: "Chưa có kế hoạch.";
+  display: block;
+  padding: 0.5rem 0;
+  font-style: italic;
+  opacity: 0.6;
+}
+
 /* Gear table */
 
 .gear {

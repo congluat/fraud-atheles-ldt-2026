@@ -244,8 +244,52 @@
     body.replaceChildren(stats, grid);
   }
 
+  /* Timeline (#lich-trinh): chèn các buổi ăn chơi vào đúng ngày (data-date), xếp theo data-at (phút trong ngày). */
+  const SLOT_AT = { "sáng": 420, "trưa": 720, "chiều": 960, "tối": 1140 };
+
+  function renderTimeline(days) {
+    const timeline = document.querySelector("[data-timeline]");
+    if (!timeline) return;
+    days.forEach((day) => {
+      const item = timeline.querySelector(`[data-date="${day.date.match(/^\d{1,2}\/\d{1,2}/)?.[0]}"]`);
+      if (!item) return;
+      const list = item.querySelector(".sched");
+      day.meals.forEach((meal) => {
+        const text = meal.plan.join(" ");
+        if (/race\s*day/i.test(text)) return;
+        const slot = meal.slot.toLowerCase();
+        const li = el("li", "sched__group sched__food");
+        li.dataset.at = String(SLOT_AT[slot] ?? 1200);
+
+        const time = el("time", null, meal.slot);
+        const body = el("span");
+        const name = meal.plan[meal.plan.length - 1];
+        body.append(/tự\s*túc/i.test(text) ? `Ăn ${slot} tự túc` : name);
+        if (meal.link) {
+          const a = el("a", "sched__map", "↗");
+          a.href = meal.link;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.setAttribute("aria-label", `Bản đồ ${name}`);
+          body.append(" ", a);
+        }
+        if (gala && /gala/i.test(text)) {
+          const more = el("a", "sched__map", "xem món ↓");
+          more.href = `#${gala.id}`;
+          body.append(" ", more);
+        }
+        li.append(time, body);
+        list.append(li);
+      });
+      [...list.children]
+        .sort((a, b) => Number(a.dataset.at || 0) - Number(b.dataset.at || 0))
+        .forEach((li) => list.append(li));
+    });
+  }
+
   function render(days) {
     if (!days.length) throw new Error("Tab Lịch trình chưa có món nào");
+    renderTimeline(days);
     daysEl.replaceChildren(
       ...days.map((day) => {
         const { title, sub } = dayLabel(day.date);

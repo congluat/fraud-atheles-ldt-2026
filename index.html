@@ -515,67 +515,54 @@
           <header class="page__head">
             <span class="page__num">06</span>
             <div>
-              <p class="eyebrow">Lịch trình · theo lịch BTC</p>
+              <p class="eyebrow">Lịch trình · mốc giải + kế hoạch nhóm</p>
               <h2>Timeline chuyến đi</h2>
             </div>
           </header>
-          <ol class="timeline">
+          <ol class="timeline" data-timeline>
             <li class="timeline__item">
               <p class="timeline__day">Thứ 5 · 05.11 — Lên đường</p>
               <ul class="sched">
-                <li><time>22:00</time><span>Nhóm 1 có mặt VP Lê Hồng Phong (xe trung chuyển)</span></li>
+                <li><time>22:00</time><span>Nhóm 1 có mặt VP Lê Hồng Phong</span></li>
                 <li><time>22:30</time><span>Nhóm 2 có mặt VP Điện Biên Phủ</span></li>
-                <li class="is-key"><time>22:45</time><span>Xe Thành Bưởi đón</span></li>
-                <li><time>—</time><span>Ngủ trên xe</span></li>
+                <li class="is-key"><time>22:45</time><span>Xe Thành Bưởi đón · ngủ trên xe</span></li>
               </ul>
             </li>
-            <li class="timeline__item">
-              <p class="timeline__day">Thứ 6 · 06.11 — Expo</p>
+            <li class="timeline__item" data-date="6/11">
+              <p class="timeline__day">Thứ 6 · 06.11 — Expo &amp; đi ăn</p>
               <ul class="sched">
-                <li><time>~05:30</time><span>Tới Đà Lạt (ước tính)</span></li>
-                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">[Gửi đồ / nhận phòng sớm]</span></li>
-                <li class="is-key"><time>08:00</time><span>Mở Expo · nhận race kit (tới 21:00)</span></li>
-                <li><time>10:00</time><span>Lễ khai mạc</span></li>
-                <li class="is-key"><time>14:00</time><span>Race briefing (tóm tắt đường chạy)</span></li>
-                <li><time>14:30</time><span>Talkshow “Sweepers – Họ là ai”</span></li>
-                <li><time>15:30</time><span>Talkshow “Chill with Trail”</span></li>
-                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Ăn tối pre-race, ngủ sớm</span></li>
-                <li><time>21:00</time><span>Đóng Expo</span></li>
+                <li data-at="330"><time>~05:30</time><span>Tới Đà Lạt · về villa Mai Anh Đào gửi đồ</span></li>
+                <li class="is-key" data-at="480"><time>08:00</time><span>Expo mở · nhận race kit (tới 21:00)</span></li>
+                <li class="is-key" data-at="840"><time>14:00</time><span>Race briefing</span></li>
+                <li data-at="1320"><time>22:00</time><span>Soạn đồ race · ngủ sớm</span></li>
               </ul>
             </li>
-            <li class="timeline__item">
+            <li class="timeline__item" data-date="7/11">
               <p class="timeline__day">Thứ 7 · 07.11 — Race day</p>
               <ul class="sched">
-                <li><time>01:30</time><span>Mở bãi xe · gửi đồ 85K</span></li>
-                <li class="is-key"><time>03:00</time><span>Xuất phát 85K</span></li>
-                <li><time>03:00</time><span>Gửi đồ 55K</span></li>
-                <li class="is-key"><time>04:30</time><span>Xuất phát 55K</span></li>
-                <li><time>07:00</time><span>Gửi đồ 15K</span></li>
-                <li class="is-key"><time>08:30</time><span>Xuất phát 15K</span></li>
-                <li><time>09:30</time><span>Khu phục hồi: ngâm chân, giãn cơ, ẩm thực (tới 22:30)</span></li>
-                <li><time>15:30</time><span>Trao giải</span></li>
-                <li><time>00:00</time><span>Đóng đường chạy tất cả cự ly</span></li>
+                <li class="is-key" data-at="180"><time>03:00</time><span>Xuất phát 85K</span></li>
+                <li class="is-key" data-at="270"><time>04:30</time><span>Xuất phát 55K</span></li>
+                <li class="is-key" data-at="510"><time>08:30</time><span>Xuất phát 15K</span></li>
+                <li data-at="1440"><time>24:00</time><span>Đóng đường chạy tất cả cự ly</span></li>
               </ul>
             </li>
-            <li class="timeline__item">
-              <p class="timeline__day">Chủ nhật · 08.11 — Nghỉ / chơi Đà Lạt</p>
-              <ul class="sched">
-                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Ngủ bù · ăn sáng</span></li>
-                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">[Hoạt động tự do]</span></li>
-              </ul>
+            <li class="timeline__item" data-date="8/11">
+              <p class="timeline__day">Chủ nhật · 08.11 — Chơi Đà Lạt &amp; Gala</p>
+              <ul class="sched"></ul>
             </li>
-            <li class="timeline__item">
+            <li class="timeline__item" data-date="9/11">
               <p class="timeline__day">Thứ 2 · 09.11 — Về Sài Gòn</p>
               <ul class="sched">
-                <li class="sched__group"><time class="placeholder">[HH:MM]</time><span class="placeholder">Trả phòng</span></li>
-                <li class="sched__group"><time>11:30</time><span>Có mặt tại 32/23 Mai Anh Đào (nên tới sớm)</span></li>
-                <li class="is-key"><time>12:00</time><span>Xe Thành Bưởi xuất bến</span></li>
-                <li><time>~18:00</time><span>Tới TP.HCM (dự kiến 18:00 – 20:00)</span></li>
+                <li class="is-key" data-at="690"><time>11:30</time><span>Trả phòng · có mặt 32/23 Mai Anh Đào</span></li>
+                <li class="is-key" data-at="720"><time>12:00</time><span>Xe Thành Bưởi xuất bến</span></li>
+                <li data-at="1080"><time>~18:00</time><span>Tới TP.HCM (18:00 – 20:00)</span></li>
               </ul>
             </li>
           </ol>
           <p class="note">
-            Giờ in đậm là mốc quan trọng của BTC. Dòng in nghiêng là kế hoạch riêng của đoàn, chờ chốt.
+            Màu vàng là mốc quan trọng của giải và xe. Các buổi ăn chơi lấy trực tiếp từ
+            <a href="https://docs.google.com/spreadsheets/d/1ELfpXl2KtBqegSa7QiP49l8-upXImQafaDBMCbnYM-o/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet ăn uống</a>
+            — sửa sheet là timeline cập nhật. Gửi đồ trước giờ xuất phát: 85K 01:30 · 55K 03:00 · 15K 07:00.
           </p>
         </div>
       </section>
