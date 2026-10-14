@@ -416,6 +416,226 @@ a {
   line-height: 1.15;
 }
 
+/* DMA Runner — nhóm chạy mới trong #gioi-thieu */
+
+.dma {
+  --dma-night: #1c1426;
+  --dma-mid: #2e1f45;
+  --dma-lilac: #b8a4f4;
+  --dma-ember: #ff8a3d;
+  --dma-fog: #f6f1ff;
+  margin-top: clamp(2.5rem, 7vh, 4.5rem);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: clamp(2rem, 5vh, 3.25rem) var(--gutter) clamp(2.25rem, 5vh, 3.5rem);
+  color: var(--dma-fog);
+  background:
+    radial-gradient(ellipse 80% 55% at 12% 0%, color-mix(in srgb, var(--dma-lilac) 22%, transparent), transparent 58%),
+    radial-gradient(ellipse 70% 50% at 92% 18%, color-mix(in srgb, var(--dma-ember) 16%, transparent), transparent 55%),
+    linear-gradient(165deg, var(--dma-night) 0%, var(--dma-mid) 48%, #16101f 100%);
+}
+
+.dma__intro {
+  margin-bottom: clamp(1.25rem, 3vh, 2rem);
+}
+
+.dma__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  margin-bottom: 1.1rem;
+}
+
+.dma__logo {
+  width: clamp(4.5rem, 12vw, 6.5rem);
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 28px color-mix(in srgb, #000 35%, transparent));
+}
+
+.dma__brand-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.dma__brand-text .eyebrow {
+  color: var(--dma-lilac);
+}
+
+.dma__brand-text h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--dma-fog);
+}
+
+.dma__tag {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dma-ember);
+}
+
+.dma__logo-wide {
+  width: min(16rem, 100%);
+  height: auto;
+  margin-left: auto;
+  padding: 0.65rem 0.9rem;
+  background: color-mix(in srgb, var(--dma-fog) 94%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, #000 28%, transparent);
+}
+
+.dma__lead {
+  margin: 0;
+  max-width: 58ch;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  color: color-mix(in srgb, var(--dma-fog) 82%, transparent);
+}
+
+.dma__lead strong {
+  color: var(--dma-fog);
+}
+
+.dma-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: minmax(5.5rem, 9.5vw);
+  gap: clamp(0.4rem, 1vw, 0.7rem);
+  margin-bottom: clamp(1.5rem, 3.5vh, 2.25rem);
+}
+
+.dma-mosaic__item {
+  position: relative;
+  margin: 0;
+  grid-column: span 3;
+  grid-row: span 2;
+  overflow: hidden;
+  isolation: isolate;
+  background: color-mix(in srgb, var(--dma-night) 70%, #000);
+  opacity: 0;
+  transform: translateY(1.1rem) scale(0.985);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.page.is-visible .dma-mosaic__item,
+.no-js .dma-mosaic__item {
+  opacity: 1;
+  transform: none;
+}
+
+.dma-mosaic__item:nth-child(1) { transition-delay: 0.05s; }
+.dma-mosaic__item:nth-child(2) { transition-delay: 0.12s; }
+.dma-mosaic__item:nth-child(3) { transition-delay: 0.18s; }
+.dma-mosaic__item:nth-child(4) { transition-delay: 0.24s; }
+.dma-mosaic__item:nth-child(5) { transition-delay: 0.3s; }
+.dma-mosaic__item:nth-child(6) { transition-delay: 0.36s; }
+.dma-mosaic__item:nth-child(7) { transition-delay: 0.42s; }
+.dma-mosaic__item:nth-child(8) { transition-delay: 0.48s; }
+.dma-mosaic__item:nth-child(9) { transition-delay: 0.54s; }
+.dma-mosaic__item:nth-child(10) { transition-delay: 0.6s; }
+.dma-mosaic__item:nth-child(11) { transition-delay: 0.66s; }
+.dma-mosaic__item:nth-child(12) { transition-delay: 0.72s; }
+.dma-mosaic__item:nth-child(13) { transition-delay: 0.78s; }
+
+.dma-mosaic__item--hero {
+  grid-column: span 8;
+  grid-row: span 4;
+}
+
+.dma-mosaic__item--ray {
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+.dma-mosaic__item--sunset {
+  grid-column: span 6;
+  grid-row: span 3;
+}
+
+.dma-mosaic__item--tall {
+  grid-row: span 3;
+}
+
+.dma-mosaic__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.dma-mosaic__item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    color-mix(in srgb, var(--dma-night) 35%, transparent) 100%
+  );
+  opacity: 0.55;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.dma-mosaic__item:hover img {
+  transform: scale(1.06);
+}
+
+.dma-mosaic__item:hover::after {
+  opacity: 0.2;
+}
+
+.dma__kit {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: end;
+}
+
+.dma__flag,
+.dma__jersey {
+  margin: 0;
+}
+
+.dma__flag img,
+.dma__jersey img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: color-mix(in srgb, #000 35%, var(--dma-night));
+}
+
+.dma__flag img {
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.dma__jersey img {
+  aspect-ratio: 2400 / 1560;
+  object-fit: contain;
+  object-position: center;
+  background: #ececef;
+}
+
+.dma__flag figcaption,
+.dma__jersey figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--dma-lilac) 75%, var(--dma-fog));
+}
+
 .cols {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -993,6 +1213,46 @@ a {
   .arrive {
     grid-template-columns: 1fr;
   }
+
+  .dma-mosaic {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(6rem, 14vw);
+  }
+
+  .dma-mosaic__item--hero {
+    grid-column: span 6;
+    grid-row: span 3;
+  }
+
+  .dma-mosaic__item--ray {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+
+  .dma-mosaic__item--sunset {
+    grid-column: span 6;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .dma-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(7.5rem, 28vw);
+  }
+
+  .dma-mosaic__item,
+  .dma-mosaic__item--tall,
+  .dma-mosaic__item--ray {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .dma-mosaic__item--hero,
+  .dma-mosaic__item--sunset {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1028,6 +1288,41 @@ a {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  .dma__logo-wide {
+    margin-left: 0;
+    width: min(14rem, 100%);
+  }
+
+  .dma-mosaic {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(6.5rem, 22vw);
+  }
+
+  .dma-mosaic__item {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .dma-mosaic__item--hero {
+    grid-column: span 6;
+    grid-row: span 3;
+  }
+
+  .dma-mosaic__item--ray,
+  .dma-mosaic__item--tall {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+
+  .dma-mosaic__item--sunset {
+    grid-column: span 6;
+    grid-row: span 2;
+  }
+
+  .dma__kit {
+    grid-template-columns: 1fr;
   }
 
   .kv > div {
