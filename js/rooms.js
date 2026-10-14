@@ -23,9 +23,9 @@ const VILLAS = [
       {
         label: "Lầu 1",
         rooms: [
-          { no: 2, bed: "Phòng đơn", wc: "WC ngoài", who: ["Lộc"] },
+          { no: 2, bed: "Phòng đơn", wc: "WC ngoài", who: ["Luật", "Vợ Luật"] },
           { no: 3, bed: "Phòng đôi", wc: "WC ngoài", who: ["Đăng", "Thành"] },
-          { no: 4, bed: "Phòng đơn", wc: "WC riêng", who: ["Luật", "Vợ Luật"] },
+          { no: 4, bed: "Phòng đơn", wc: "WC riêng", who: ["Lộc", "Vợ Lộc"] },
         ],
       },
       {

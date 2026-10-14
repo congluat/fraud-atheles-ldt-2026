@@ -159,15 +159,30 @@ a {
 }
 
 .home__count {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin: 1rem 0 0;
+}
+
+.home__count-item {
   padding: 0.35rem 0.75rem;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--pine-deep);
   background: var(--trail);
+}
+
+.home__count-item + .home__count-item {
+  color: var(--trail);
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--trail);
+}
+
+.home__count-item strong {
+  font-weight: 800;
 }
 
 .home__count:empty {
@@ -771,6 +786,27 @@ a {
 
 .sched__group span {
   font-style: italic;
+}
+
+.timeline__wx {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mist);
+  opacity: 0.85;
+}
+
+.timeline__wx-icon {
+  font-size: 1rem;
+  color: var(--trail);
+}
+
+.timeline__wx-note {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .sched__food time {
@@ -1903,6 +1939,28 @@ a {
   margin-top: 1.5rem !important;
 }
 
+.budget__refresh {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--trail);
+  background: transparent;
+  color: var(--trail);
+  font: 700 0.78rem var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.budget__refresh:hover,
+.budget__refresh:focus-visible {
+  background: var(--trail);
+  color: var(--pine-deep);
+}
+
+.budget__refresh:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
 .budget__status a {
   color: var(--trail);
 }
@@ -2510,15 +2568,12 @@ html:has(dialog.menu[open]) {
 
 @media (max-width: 640px) {
   .places .places__filter {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    margin-inline: -1rem;
-    padding-inline: 1rem;
-    scrollbar-width: none;
+    gap: 0.3rem;
   }
 
   .places__filter .mem-filter__btn {
-    flex: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
   }
 }
 

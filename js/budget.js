@@ -348,21 +348,50 @@
         })
       : Promise.resolve(null);
 
-  Promise.all([load(gidChi).then(parseChi), optional(gidSummary, parseSummary), optional(gidThu, parseThu)])
-    .then(([chi, summary, thu]) => {
-      if (!chi.items.length) throw new Error("Tab Chi chưa có khoản nào");
-      renderStats(chi, summary, thu ? thu.rounds : null);
-      renderItems(chi);
-      renderPeople(chi, summary, thu);
-    })
-    .catch((err) => {
-      console.warn("Không tải được sheet thu chi:", err);
-      rowsEl.replaceChildren();
-      const tr = el("tr");
-      const td = el("td", "placeholder", "Không tải được Google Sheet — mở link bên dưới để xem trực tiếp.");
-      td.colSpan = 5;
-      tr.append(td);
-      rowsEl.append(tr);
-      statusEl.classList.add("budget__status--error");
-    });
+  const refreshBtn = $("[data-budget-refresh]");
+  const updatedEl = $("[data-budget-updated]");
+  let loaded = false;
+
+  function refresh() {
+    if (refreshBtn) {
+      refreshBtn.disabled = true;
+      refreshBtn.textContent = "Đang tải…";
+    }
+    return Promise.all([load(gidChi).then(parseChi), optional(gidSummary, parseSummary), optional(gidThu, parseThu)])
+      .then(([chi, summary, thu]) => {
+        if (!chi.items.length) throw new Error("Tab Chi chưa có khoản nào");
+        moreBtn.setAttribute("aria-expanded", "false");
+        renderStats(chi, summary, thu ? thu.rounds : null);
+        renderItems(chi);
+        renderPeople(chi, summary, thu);
+        loaded = true;
+        statusEl.classList.remove("budget__status--error");
+        if (updatedEl) {
+          updatedEl.textContent = `Cập nhật lúc ${new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}.`;
+        }
+      })
+      .catch((err) => {
+        console.warn("Không tải được sheet thu chi:", err);
+        statusEl.classList.add("budget__status--error");
+        if (loaded) {
+          if (updatedEl) updatedEl.textContent = "Tải lại thất bại — đang hiện số liệu lần trước.";
+          return;
+        }
+        rowsEl.replaceChildren();
+        const tr = el("tr");
+        const td = el("td", "placeholder", "Không tải được Google Sheet — mở link bên dưới để xem trực tiếp.");
+        td.colSpan = 5;
+        tr.append(td);
+        rowsEl.append(tr);
+      })
+      .finally(() => {
+        if (refreshBtn) {
+          refreshBtn.disabled = false;
+          refreshBtn.textContent = "↻ Tải lại số liệu";
+        }
+      });
+  }
+
+  refreshBtn?.addEventListener("click", refresh);
+  refresh();
 })();
