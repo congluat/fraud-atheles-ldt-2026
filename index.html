@@ -32,7 +32,7 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/styles.css?v=202610141225" />
+    <link rel="stylesheet" href="./css/styles.css?v=202610231501" />
   </head>
   <body>
     <a class="skip-link" href="#menu">Tới menu</a>
@@ -292,8 +292,14 @@
             </div>
           </header>
 
-          <div class="dist">
-            <article class="dist__card">
+          <div class="dist" data-dist-picker>
+            <article
+              class="dist__card"
+              data-course="15k"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
               <p class="dist__km">15<small>km</small></p>
               <p class="dist__tag">Tỉnh thức giữa đường hoa</p>
               <dl class="dist__facts">
@@ -304,9 +310,16 @@
               <p class="dist__desc">
                 Rừng thông, dốc vừa phải, vài đoạn dã quỳ. Hợp người chạy road muốn thử trail.
               </p>
+              <span class="dist__cta">Xem đường chạy</span>
             </article>
 
-            <article class="dist__card">
+            <article
+              class="dist__card"
+              data-course="55k"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
               <p class="dist__km">55<small>km</small></p>
               <p class="dist__tag">Self Shift · Ultra đầu đời</p>
               <dl class="dist__facts">
@@ -319,9 +332,16 @@
               <p class="dist__desc">
                 Đón bình minh trên đỉnh dốc Radar, qua rừng thông, đồi nông nghiệp và thác Tàm Thàm.
               </p>
+              <span class="dist__cta">Xem đường chạy</span>
             </article>
 
-            <article class="dist__card">
+            <article
+              class="dist__card"
+              data-course="85k"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
               <p class="dist__km">85<small>km</small></p>
               <p class="dist__tag">Hành trình đổi mình sâu nhất</p>
               <dl class="dist__facts">
@@ -336,8 +356,27 @@
                 Bình minh trên Langbiang (km 15–20), rừng già Bidoup trơn và kỹ thuật (km 35–45),
                 đồi Đạ Sar (km 55–65). Phần khó dồn ở nửa đầu.
               </p>
+              <span class="dist__cta">Xem đường chạy</span>
             </article>
           </div>
+
+          <aside class="course-map" data-course-panel hidden aria-label="Bản đồ đường chạy">
+            <div class="course-map__head">
+              <p class="eyebrow">Đường chạy</p>
+              <h3 data-course-title>Bản đồ &amp; độ cao</h3>
+              <p class="course-map__status" data-course-status></p>
+            </div>
+            <div class="course-map__stack">
+              <figure class="course-map__fig">
+                <figcaption>Mặt bằng</figcaption>
+                <svg class="course-map__svg" data-course-map role="img" aria-label="Bản đồ 2D đường chạy"></svg>
+              </figure>
+              <figure class="course-map__fig">
+                <figcaption>Profile độ cao</figcaption>
+                <svg class="course-map__svg course-map__svg--elev" data-course-elev role="img" aria-label="Biểu đồ độ cao"></svg>
+              </figure>
+            </div>
+          </aside>
 
           <h3 class="subhead">Sáng race day: giờ nên có mặt ở Thung Lũng Tình Yêu</h3>
           <div class="arrive">
@@ -911,16 +950,17 @@
       <span>Menu</span>
     </a>
 
-    <script src="./js/main.js?v=202610141225" defer></script>
-    <script src="./js/seats.js?v=202610141225" defer></script>
-    <script src="./js/rooms.js?v=202610141225" defer></script>
-    <script src="./js/sheet.js?v=202610141225" defer></script>
-    <script src="./js/budget.js?v=202610141225" defer></script>
-    <script src="./js/food.js?v=202610141225" defer></script>
-    <script src="./js/places.js?v=202610141225" defer></script>
-    <script src="./js/members.js?v=202610141225" defer></script>
-    <script src="./js/gear.js?v=202610141225" defer></script>
-    <script src="./js/home-video.js?v=202610141225" defer></script>
-    <script src="./js/weather.js?v=202610141225" defer></script>
+    <script src="./js/main.js?v=202610231501" defer></script>
+    <script src="./js/seats.js?v=202610231501" defer></script>
+    <script src="./js/rooms.js?v=202610231501" defer></script>
+    <script src="./js/sheet.js?v=202610231501" defer></script>
+    <script src="./js/budget.js?v=202610231501" defer></script>
+    <script src="./js/food.js?v=202610231501" defer></script>
+    <script src="./js/places.js?v=202610231501" defer></script>
+    <script src="./js/members.js?v=202610231501" defer></script>
+    <script src="./js/gear.js?v=202610231501" defer></script>
+    <script src="./js/home-video.js?v=202610231501" defer></script>
+    <script src="./js/weather.js?v=202610231501" defer></script>
+    <script src="./js/course-map.js?v=202610231501" defer></script>
   </body>
 </html>

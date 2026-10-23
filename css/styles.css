@@ -836,10 +836,52 @@ a {
 .dist__card {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
   background: color-mix(in srgb, var(--mist) 6%, transparent);
   border: 1px solid color-mix(in srgb, var(--mist) 16%, transparent);
   border-top: 4px solid var(--trail);
+  transition:
+    border-color 0.25s var(--ease-out),
+    background 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.dist__card:hover {
+  background: color-mix(in srgb, var(--mist) 10%, transparent);
+}
+
+.dist__card:focus-visible {
+  outline: 2px solid var(--trail);
+  outline-offset: 3px;
+}
+
+.dist__card.is-active {
+  background: color-mix(in srgb, var(--trail) 14%, transparent);
+  border-color: color-mix(in srgb, var(--trail) 55%, transparent);
+  border-top-color: var(--trail);
+}
+
+.dist__cta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--mist) 14%, transparent);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--trail);
+}
+
+.dist__card.is-active .dist__cta {
+  color: var(--mist);
 }
 
 .dist__km {
@@ -895,6 +937,183 @@ a {
   margin: auto 0 0;
   font-size: 0.92rem;
   opacity: 0.8;
+}
+
+/* Course map 2D + elevation */
+
+.course-map {
+  margin: clamp(1.75rem, 4vh, 2.75rem) 0 clamp(0.5rem, 2vh, 1rem);
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  background: color-mix(in srgb, var(--mist) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mist) 16%, transparent);
+  border-top: 4px solid var(--trail);
+}
+
+.course-map__head {
+  margin-bottom: 1rem;
+}
+
+.course-map__head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.course-map__status {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+.course-map__stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.course-map__fig {
+  margin: 0;
+}
+
+.course-map__fig figcaption {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moss-light);
+}
+
+.course-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 12 / 7;
+  background: color-mix(in srgb, var(--pine-deep) 55%, #0a1610);
+}
+
+.course-map__svg--elev {
+  aspect-ratio: 18 / 5;
+}
+
+.cmap__bg {
+  fill: color-mix(in srgb, var(--pine-deep) 70%, #0a1610);
+}
+
+.cmap__track-glow {
+  fill: none;
+  stroke: color-mix(in srgb, var(--trail) 45%, transparent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cmap__track {
+  fill: none;
+  stroke: var(--trail);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cmap__start {
+  fill: #8fd4a8;
+  stroke: var(--mist);
+  stroke-width: 1.5;
+}
+
+.cmap__finish {
+  fill: var(--trail);
+  stroke: var(--mist);
+  stroke-width: 1.5;
+}
+
+.cmap__mark circle {
+  fill: color-mix(in srgb, var(--mist) 35%, var(--trail));
+  stroke: var(--mist);
+  stroke-width: 1.2;
+}
+
+.cmap__mark text {
+  fill: var(--mist);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.cmap__grid {
+  stroke: color-mix(in srgb, var(--mist) 12%, transparent);
+  stroke-width: 1;
+}
+
+.cmap__axis {
+  fill: color-mix(in srgb, var(--mist) 65%, transparent);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+.cmap__axis--unit {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cmap__elev-fill {
+  fill: color-mix(in srgb, var(--trail) 28%, transparent);
+}
+
+.cmap__elev-line {
+  fill: none;
+  stroke: var(--trail);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.cmap__stat {
+  fill: var(--mist);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.cmap__cp line {
+  stroke: color-mix(in srgb, var(--mist) 28%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.cmap__cp circle {
+  fill: color-mix(in srgb, var(--mist) 40%, var(--trail));
+  stroke: var(--mist);
+  stroke-width: 1.2;
+}
+
+.cmap__cp text {
+  fill: var(--mist);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.cmap__cp--start circle {
+  fill: #8fd4a8;
+}
+
+.cmap__cp--finish circle {
+  fill: var(--trail);
+}
+
+@media (max-width: 900px) {
+  .course-map__svg--elev {
+    aspect-ratio: 16 / 6;
+  }
 }
 
 .cols--info {
