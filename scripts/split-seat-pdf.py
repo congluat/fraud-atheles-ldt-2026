@@ -12,14 +12,14 @@ import pymupdf
 # Tên file theo sơ đồ ghế đoàn (seats.js). Tên in trên PDF có thể sai / lệch chỗ.
 ASSIGN_BY_TRIP = {
     "sg-dl": {  # chiều đi
-        "1A": "Lệ", "3A": "Linh Đậu", "4A": "Bơ", "5A": "Timmie", "6A": "Vợ Timmie",
-        "7A": "Bịp", "8A": "Tú", "9A": "Thuỳ", "11A": "Trí Quan",
+        "3A": "Linh Đậu", "4A": "Bơ", "5A": "Timmie", "6A": "Vợ Timmie",
+        "7A": "Bịp", "8A": "Tú", "9A": "Thuỳ", "10A": "Lệ", "11A": "Trí Quan",
         "12A": "Dori", "3B": "Luật", "4B": "Luna", "5B": "Quân", "6B": "Thy",
         "7B": "Thành", "9B": "Đăng",
     },
     "dl-sg": {  # chiều về
-        "1A": "Lệ", "3A": "Linh Đậu", "4A": "Bơ", "5A": "Timmie", "6A": "Vợ Timmie",
-        "7A": "Bịp", "8A": "Tú", "9A": "Thuỳ", "11A": "Trí Quan", "12A": "Dori",
+        "3A": "Linh Đậu", "4A": "Bơ", "5A": "Timmie", "6A": "Vợ Timmie",
+        "7A": "Bịp", "8A": "Tú", "9A": "Thuỳ", "10A": "Lệ", "11A": "Trí Quan", "12A": "Dori",
         "4B": "Luna", "5B": "Quân", "6B": "Thy", "7B": "Thành", "9B": "Đăng",
     },
 }

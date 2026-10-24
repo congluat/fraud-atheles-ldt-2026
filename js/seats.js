@@ -5,9 +5,8 @@ const TRIPS = {
   di: {
     label: "Chiều đi · SG → ĐL · tối 05.11",
     empty: "Chưa có số giường chiều đi.",
-    booked: ["1A", "3A", "4A", "5A", "6A", "7A", "8A", "9A", "11A", "12A", "3B", "4B", "5B", "6B", "7B", "9B"],
+    booked: ["3A", "4A", "5A", "6A", "7A", "8A", "9A", "10A", "11A", "12A", "3B", "4B", "5B", "6B", "7B", "9B"],
     assignments: {
-      "1A": "Lệ",
       "3A": "Linh Đậu",
       "4A": "Bơ",
       "5A": "Timmie",
@@ -15,6 +14,7 @@ const TRIPS = {
       "7A": "Bịp",
       "8A": "Tú",
       "9A": "Thuỳ",
+      "10A": "Lệ",
       "11A": "Trí Quan",
       "12A": "Dori",
       "3B": "Luật",
@@ -27,9 +27,8 @@ const TRIPS = {
   },
   ve: {
     label: "Chiều về · ĐL → SG · 09.11 12:00",
-    booked: ["1A", "3A", "4A", "5A", "6A", "7A", "8A", "9A", "11A", "12A", "4B", "5B", "6B", "7B", "9B"],
+    booked: ["3A", "4A", "5A", "6A", "7A", "8A", "9A", "10A", "11A", "12A", "4B", "5B", "6B", "7B", "9B"],
     assignments: {
-      "1A": "Lệ",
       "3A": "Linh Đậu",
       "4A": "Bơ",
       "5A": "Timmie",
@@ -37,6 +36,7 @@ const TRIPS = {
       "7A": "Bịp",
       "8A": "Tú",
       "9A": "Thuỳ",
+      "10A": "Lệ",
       "11A": "Trí Quan",
       "12A": "Dori",
       "4B": "Luna",
