@@ -1,6 +1,7 @@
 /*
  * Thu chi: đọc 3 tab của Google Sheet qua CSV (số tiền trong sheet tính bằng nghìn đồng).
- *  - Chi:      Ngày | Hoạt động | Số tiền | Số người | Mỗi người | <tên từng người, đánh "x">...
+ *  - Chi:      Ngày | Hoạt động | Số tiền | Số suất | Mỗi suất | <tên từng người: "x" = 1 suất, số = số suất
+ *              hoặc tiền món riêng (chia theo tỉ lệ), trống = không tham gia>...
  *  - Thu:      Ngày thu | <tên từng người> ... | Total
  *  - Tổng kết: dòng "Đã đóng" / "Đã xài" / "Dư / (Thiếu)" theo từng người,
  *              và các dòng "Tổng thu" / "Tổng chi" / "Quỹ còn lại" (giá trị ở cột 2).
@@ -27,8 +28,15 @@
 
   const toNumber = (s) => Number(String(s || "").replace(/[^\d.-]/g, "")) || 0;
   const money = (n) => `${Math.round(n).toLocaleString("vi-VN")}đ`;
-  const isMarked = (s) => String(s || "").trim().toLowerCase() === "x";
+  /* Ô của từng người: "x" = 1 suất; số = số suất (hoặc tiền món riêng, nghìn đồng); trống = không tham gia. */
+  const weightOf = (s) => {
+    const v = String(s || "").trim();
+    if (v.toLowerCase() === "x") return 1;
+    const n = Number(v.replace(/,/g, "."));
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  };
   const cell = (r, i) => String((r && r[i]) || "").trim();
+  const fmtNum = (n) => (Math.round(n * 100) / 100).toLocaleString("vi-VN");
 
   function el(tag, cls, text) {
     const node = document.createElement(tag);
@@ -46,17 +54,25 @@
     const items = rows.slice(1)
       .filter((r) => cell(r, 1) && toNumber(r[2]) > 0 && !SUMMARY_LABEL.test(cell(r, 1)))
       .map((r) => {
-        const joined = people.filter((p) => isMarked(r[p.col]));
+        const weights = new Map(people.map((p) => [p, weightOf(r[p.col])]));
+        const joined = people.filter((p) => weights.get(p) > 0);
         const amount = toNumber(r[2]) * UNIT;
-        const count = toNumber(r[3]) || joined.length;
+        const totalWeight = joined.reduce((s, p) => s + weights.get(p), 0);
+        const uneven = joined.some((p) => weights.get(p) !== 1);
+        /* Tự tính giá 1 suất: ô "Mỗi người" trong CSV đã bị làm tròn khi chia lẻ. */
+        const each = totalWeight ? amount / totalWeight : toNumber(r[4]) * UNIT;
         return {
           date: cell(r, 0),
           title: cell(r, 1),
           amount,
-          count,
-          each: toNumber(r[4]) * UNIT || (count ? amount / count : 0),
+          count: joined.length,
+          totalWeight,
+          uneven,
+          each,
+          share: (p) => (weights.get(p) || 0) * each,
+          weight: (p) => weights.get(p) || 0,
           joined,
-          skipped: people.filter((p) => !isMarked(r[p.col])),
+          skipped: people.filter((p) => !(weights.get(p) > 0)),
         };
       });
 
@@ -164,7 +180,7 @@
         tr.append(title);
         tr.append(el("td", "num budget__amount", money(it.amount)));
         tr.append(el("td", "num budget__count", String(it.count)));
-        tr.append(el("td", "num budget__each", money(it.each)));
+        tr.append(el("td", "num budget__each", it.uneven ? "Theo phần" : money(it.each)));
         return tr;
       })
     );
@@ -212,7 +228,7 @@
       .filter((r) => r.amount > 0);
 
     const paid = p.paid ?? payments.reduce((s, r) => s + r.amount, 0);
-    const spent = p.spent ?? spends.reduce((s, it) => s + it.each, 0);
+    const spent = p.spent ?? spends.reduce((s, it) => s + it.share(chiPerson), 0);
     const balance = p.balance ?? paid - spent;
 
     const stats = el("ul", "person__stats");
@@ -251,8 +267,12 @@
     const spendRows = spends.map((it) => {
       const li = el("li", "person__row");
       const what = el("span", "person__what");
-      what.append(el("strong", null, it.title), el("span", "person__sub", `${money(it.amount)} ÷ ${it.count} người`));
-      li.append(el("span", "person__date", it.date), what, el("span", "person__amount", money(it.each)));
+      const w = it.weight(chiPerson);
+      const sub = it.uneven
+        ? `${money(it.amount)} · phần của bạn ${fmtNum(w)}/${fmtNum(it.totalWeight)}`
+        : `${money(it.amount)} ÷ ${it.count} người`;
+      what.append(el("strong", null, it.title), el("span", "person__sub", sub));
+      li.append(el("span", "person__date", it.date), what, el("span", "person__amount", money(it.share(chiPerson))));
       return li;
     });
 
@@ -266,7 +286,7 @@
     }
     parts.push(
       block(`Đã đóng · ${payments.length} lần`, payRows, payments.length ? payments.reduce((s, r) => s + r.amount, 0) : null, "Chưa đóng đợt nào."),
-      block(`Đã chi · ${spends.length} khoản`, spendRows, spends.length ? spends.reduce((s, it) => s + it.each, 0) : null, "Chưa có khoản chi nào.")
+      block(`Đã chi · ${spends.length} khoản`, spendRows, spends.length ? spends.reduce((s, it) => s + it.share(chiPerson), 0) : null, "Chưa có khoản chi nào.")
     );
     if (skipped.length) {
       parts.push(el("p", "hint person__skip", `Không tính: ${skipped.map((it) => `${it.title} (${it.date})`).join(", ")}`));
@@ -281,7 +301,7 @@
       : chi.people.map((p) => ({
           name: p.name,
           paid: null,
-          spent: chi.items.reduce((sum, it) => sum + (it.joined.includes(p) ? it.each : 0), 0),
+          spent: chi.items.reduce((sum, it) => sum + it.share(p), 0),
           balance: null,
         }));
 
