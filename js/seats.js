@@ -5,6 +5,11 @@ const TRIPS = {
   di: {
     label: "Chiều đi · SG → ĐL · tối 05.11",
     empty: "Chưa có số giường chiều đi.",
+    // Điểm lên xe theo tên → tô màu ghế
+    pickup: {
+      lhp: ["Linh Đậu", "Trí Quan", "Dori", "Thy", "Lệ", "Luna", "Quân"],
+      hx: ["Timmie", "Vợ Timmie", "Luật", "Tú", "Thuỳ", "Bơ", "Bịp", "Đăng", "Thành"],
+    },
     booked: ["3A", "4A", "5A", "6A", "7A", "8A", "9A", "10A", "11A", "12A", "3B", "4B", "5B", "6B", "7B", "9B"],
     assignments: {
       "3A": "Linh Đậu",
@@ -46,6 +51,11 @@ const TRIPS = {
       "9B": "Đăng",
     },
   },
+};
+
+const PICKUPS = {
+  lhp: "Lên xe VP Lê Hồng Phong · 22:00",
+  hx: "Lên xe VP Điện Biên Phủ (Hàng Xanh) · 22:30",
 };
 
 // Tên gọi → họ tên, dùng cho tooltip
@@ -121,6 +131,14 @@ const FULL_NAMES = {
       empty.hidden = hasSeats;
       empty.textContent = hasSeats ? "" : trip.empty || "Chưa có số giường.";
     }
+    const pickupOf = (name) =>
+      Object.keys(trip.pickup || {}).find((k) => trip.pickup[k].includes(name)) || null;
+    const pickupCount = { lhp: 0, hx: 0 };
+    document.querySelectorAll("[data-legend]").forEach((li) => {
+      const isPickup = li.dataset.legend !== "taken";
+      li.hidden = trip.pickup ? li.dataset.legend === "taken" : isPickup;
+    });
+
     if (!hasSeats) return;
 
     let taken = 0;
@@ -156,10 +174,13 @@ const FULL_NAMES = {
           text = "Chưa xếp";
         }
 
-        const seat = el("div", `seat ${state}`);
+        const pickup = name ? pickupOf(name) : null;
+        if (pickup) pickupCount[pickup] += 1;
+
+        const seat = el("div", `seat ${state}${pickup ? ` seat--${pickup}` : ""}`);
         seat.dataset.seat = code;
         seat.title = name
-          ? `${code} · ${name}${FULL_NAMES[name] ? ` (${FULL_NAMES[name]})` : ""}`
+          ? `${code} · ${name}${FULL_NAMES[name] ? ` (${FULL_NAMES[name]})` : ""}${pickup ? ` · ${PICKUPS[pickup]}` : ""}`
           : `${code} · ${text}`;
         seat.appendChild(el("span", "seat__pillow"));
         seat.appendChild(el("span", "seat__code", code));
@@ -172,6 +193,8 @@ const FULL_NAMES = {
       bus.appendChild(deck);
     });
 
+    setText("[data-pickup-count='lhp']", pickupCount.lhp);
+    setText("[data-pickup-count='hx']", pickupCount.hx);
     setText("[data-seat-count]", taken);
     setText("[data-seat-booked]", booked.size);
     setText("[data-seat-total]", booked.size);

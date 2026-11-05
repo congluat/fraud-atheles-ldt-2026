@@ -9,6 +9,7 @@
   --fog: #d7e0d9;
   --trail: #c9954f;
   --trail-deep: #8f6a35;
+  --pickup-hx: #7cc49a;
   --ink: #132019;
   --ink-soft: #3a4a40;
   --paper: #f5f8f4;
@@ -1685,6 +1686,22 @@ a {
 .seatmap__swatch--booked {
   background: color-mix(in srgb, var(--trail) 18%, transparent);
   border-color: var(--trail);
+}
+
+/* Điểm lên xe: Lê Hồng Phong = vàng trail, Hàng Xanh = xanh lá */
+.seatmap__swatch--lhp {
+  background: var(--trail);
+  border-color: var(--trail);
+}
+
+.seatmap__swatch--hx {
+  background: var(--pickup-hx);
+  border-color: var(--pickup-hx);
+}
+
+.seat--taken.seat--hx {
+  border-color: var(--pickup-hx);
+  background: var(--pickup-hx);
 }
 
 .seatmap__swatch--other {
