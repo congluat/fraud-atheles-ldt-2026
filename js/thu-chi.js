@@ -159,7 +159,9 @@
 
   function unit(label, members) {
     const sum = (k) => members.reduce((s, m) => s + m[k], 0);
-    return { label, members, paid: sum("paid"), spent: sum("spent"), balance: sum("balance") };
+    // Dư/thiếu làm tròn tới nghìn theo từng người rồi mới cộng (như tab Tổng kết), tránh lệch vài trăm đồng
+    const balance = members.reduce((s, m) => s + kRound(m.balance), 0);
+    return { label, members, paid: sum("paid"), spent: sum("spent"), balance };
   }
 
   /* ---------- vẽ ---------- */
@@ -179,10 +181,21 @@
   }
 
   function renderSettle(units, left) {
-    const owe = units.filter((u) => Math.round(u.balance / UNIT) < 0).sort((a, b) => a.balance - b.balance);
-    const back = units.filter((u) => Math.round(u.balance / UNIT) > 0).sort((a, b) => b.balance - a.balance);
-    const oweSum = owe.reduce((s, u) => s - kRound(u.balance), 0);
-    const backSum = back.reduce((s, u) => s + kRound(u.balance), 0);
+    const owe = units.filter((u) => u.balance < 0).sort((a, b) => a.balance - b.balance);
+    const back = units.filter((u) => u.balance > 0).sort((a, b) => b.balance - a.balance);
+    const amt = new Map(units.map((u) => [u, Math.abs(u.balance)]));
+    const oweSum = owe.reduce((s, u) => s + amt.get(u), 0);
+    let backSum = back.reduce((s, u) => s + amt.get(u), 0);
+
+    /* Làm tròn từng người có thể làm tổng hoàn lệch vài nghìn so với quỹ thật:
+       dồn phần lẻ vào khoản hoàn lớn nhất để tổng hoàn = quỹ còn + phần thu thêm. */
+    const diff = backSum - (left + oweSum);
+    let note = "";
+    if (back.length && Math.abs(diff) >= 1 && Math.abs(diff) < 20 * UNIT) {
+      amt.set(back[0], amt.get(back[0]) - diff);
+      backSum -= diff;
+      note = ` ${back[0].label} ${diff > 0 ? "bớt" : "thêm"} ${money(Math.abs(diff))} do làm tròn.`;
+    }
 
     const fill = (sel, list, cls) => {
       const ul = $(sel);
@@ -190,7 +203,7 @@
       if (!list.length) ul.append(el("li", "tc-empty", "Không có ai."));
       list.forEach((u) => {
         const li = el("li");
-        li.append(el("span", "tc-settle__name", u.label), el("span", `tc-amount ${cls}`, money(Math.abs(kRound(u.balance)))));
+        li.append(el("span", "tc-settle__name", u.label), el("span", `tc-amount ${cls}`, money(amt.get(u))));
         ul.append(li);
       });
     };
@@ -199,9 +212,11 @@
     $("[data-settle-owe-sum]").textContent = `Tổng: ${money(oweSum)}`;
     $("[data-settle-back-sum]").textContent = `Tổng: ${money(backSum)}`;
     $("[data-settle-lead]").textContent =
-      `Quỹ đang còn ${money(left)}. Khi thu đủ ${money(oweSum)} từ người thiếu, quỹ có ${money(left + oweSum)} ` +
-      `để hoàn lại ${money(backSum)} cho người dư (đã làm tròn tới nghìn đồng).`;
+      (oweSum
+        ? `Quỹ đang còn ${money(left)}. Khi thu đủ ${money(oweSum)} từ người thiếu, quỹ có ${money(left + oweSum)} để hoàn lại cho người dư.`
+        : `Không còn ai thiếu. Quỹ còn ${money(left)}, hoàn lại hết cho người dư.`) + note;
   }
+
 
   function badge(n) {
     const r = Math.round(n / UNIT);
