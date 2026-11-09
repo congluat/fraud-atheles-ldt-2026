@@ -3561,3 +3561,12 @@ html:has(dialog.menu[open]) {
     height: 18rem;
   }
 }
+
+.budget__page-link {
+  margin: 1rem 0 0;
+}
+
+.budget__page-link .budget__more {
+  display: inline-block;
+  text-decoration: none;
+}

@@ -16,7 +16,7 @@
   const UNIT = 1000;
   const PEOPLE_FROM = 5;
   const LIMIT = 5;
-  const SUMMARY_LABEL = /tổng|\/\s*người|đã\s*(đóng|xài)/i;
+  const SUMMARY_LABEL = /^(tổng|đã\s*(đóng|xài))/i;
 
   const $ = (sel) => root.querySelector(sel);
   const rowsEl = $("[data-budget-rows]");

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thu chi · Lamdong Trail 2026</title>
+    <meta name="description" content="Thu chi quỹ chung Fraud Athletes · Lamdong Trail 2026 — theo cặp, quyết toán ai nộp thêm, ai được hoàn." />
+    <meta name="theme-color" content="#163228" />
+    <meta property="og:title" content="Thu chi · Lamdong Trail 2026" />
+    <meta property="og:description" content="Quỹ chung theo cặp: đã đóng, đã xài, ai nộp thêm, ai được hoàn." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/thu-chi.css?v=202611090247" />
+  </head>
+  <body>
+    <div
+      class="tc"
+      data-thu-chi
+      data-sheet="1sfTxzfASx_a17GfugQTw7myAKDHDIR-Qci-YHCDt1U4"
+      data-gid-chi="1300028401"
+      data-gid-thu="534769142"
+      data-gid-summary="50102388"
+    >
+      <header class="tc-hero">
+        <div class="tc-wrap">
+          <a class="tc-back" href="./#thu-chi">← Trang chính</a>
+          <p class="tc-eyebrow">Fraud Athletes · Lamdong Trail 2026</p>
+          <h1>Thu chi quỹ chung</h1>
+
+          <ul class="tc-stats">
+            <li><span>Tổng thu</span><strong data-stat="in">—</strong></li>
+            <li><span>Tổng chi</span><strong data-stat="out">—</strong></li>
+            <li><span>Quỹ còn lại</span><strong data-stat="left">—</strong></li>
+            <li><span>Số khoản chi</span><strong data-stat="count">—</strong></li>
+          </ul>
+
+          <p class="tc-meta">
+            <span data-status>Đang tải số liệu…</span>
+            <button type="button" class="tc-refresh" data-refresh>↻ Tải lại</button>
+          </p>
+        </div>
+      </header>
+
+      <main class="tc-wrap">
+        <div class="tc-toggle" role="tablist" aria-label="Cách nhóm">
+          <button type="button" role="tab" data-mode="couple" aria-selected="true">Theo cặp</button>
+          <button type="button" role="tab" data-mode="person" aria-selected="false">Từng người</button>
+        </div>
+
+        <section class="tc-section" aria-labelledby="settle-title">
+          <h2 id="settle-title">Quyết toán</h2>
+          <p class="tc-lead" data-settle-lead></p>
+          <div class="tc-settle">
+            <div class="tc-settle__col tc-settle__col--owe">
+              <h3>Cần nộp thêm vào quỹ</h3>
+              <ul data-settle-owe></ul>
+              <p class="tc-settle__sum" data-settle-owe-sum></p>
+            </div>
+            <div class="tc-settle__col tc-settle__col--back">
+              <h3>Quỹ hoàn lại</h3>
+              <ul data-settle-back></ul>
+              <p class="tc-settle__sum" data-settle-back-sum></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tc-section" aria-labelledby="groups-title">
+          <h2 id="groups-title" data-groups-title>Theo cặp</h2>
+          <p class="tc-lead">Chạm vào từng thẻ để xem chi tiết từng khoản.</p>
+          <div class="tc-groups" data-groups></div>
+        </section>
+
+        <section class="tc-section" aria-labelledby="items-title">
+          <h2 id="items-title">Các khoản chi</h2>
+          <p class="tc-lead">Ô ghi số trong sheet là chia theo phần (vd. vé người lớn / trẻ em), còn lại chia đều.</p>
+          <ol class="tc-items" data-items></ol>
+        </section>
+
+        <section class="tc-section" aria-labelledby="rounds-title">
+          <h2 id="rounds-title">Các đợt thu</h2>
+          <ol class="tc-items" data-rounds></ol>
+        </section>
+
+        <footer class="tc-foot">
+          Số liệu lấy trực tiếp từ
+          <a href="https://docs.google.com/spreadsheets/d/1sfTxzfASx_a17GfugQTw7myAKDHDIR-Qci-YHCDt1U4/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet chi tiêu</a>
+          (đơn vị gốc: nghìn đồng).
+        </footer>
+      </main>
+    </div>
+
+    <script src="./js/sheet.js?v=202611090247" defer></script>
+    <script src="./js/thu-chi.js?v=202611090247" defer></script>
+  </body>
+</html>
