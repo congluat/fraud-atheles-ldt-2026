@@ -37,7 +37,7 @@
   const money = (n) => `${Math.round(n).toLocaleString("vi-VN")}đ`;
   /* Quyết toán làm tròn tới nghìn đồng cho dễ chuyển khoản */
   const kRound = (n) => Math.round(n / UNIT) * UNIT;
-  const signed = (n) => (Math.round(n / UNIT) === 0 ? "0đ" : `${n > 0 ? "+" : "−"}${money(Math.abs(n))}`);
+  const signed = (n) => (Math.round(n / UNIT) === 0 ? "0đ" : `${n > 0 ? "+" : "−"}${money(Math.abs(kRound(n)))}`);
   const weightOf = (s) => {
     const v = String(s || "").trim();
     if (v.toLowerCase() === "x") return 1;
@@ -100,7 +100,7 @@
         const amount = Object.values(by).reduce((s, v) => s + v, 0);
         return { date: cell(r, 0), amount, of: (name) => by[norm(name)] || 0, by };
       })
-      .filter((it) => it.amount > 0);
+      .filter((it) => it.amount !== 0); // số âm = quỹ hoàn lại
     return { names: names.filter(Boolean), rounds };
   }
 
@@ -159,8 +159,8 @@
 
   function unit(label, members) {
     const sum = (k) => members.reduce((s, m) => s + m[k], 0);
-    // Dư/thiếu làm tròn tới nghìn theo từng người rồi mới cộng (như tab Tổng kết), tránh lệch vài trăm đồng
-    const balance = members.reduce((s, m) => s + kRound(m.balance), 0);
+    // Làm tròn tới nghìn theo từng người (như tab Tổng kết); cả nhóm lệch dưới 1.000đ thì coi như đủ
+    const balance = Math.abs(sum("balance")) < UNIT ? 0 : members.reduce((s, m) => s + kRound(m.balance), 0);
     return { label, members, paid: sum("paid"), spent: sum("spent"), balance };
   }
 
@@ -289,8 +289,8 @@
 
       const pays = state.thu.rounds
         .map((r) => ({ r, v: u.members.reduce((s, m) => s + r.of(m.name), 0) }))
-        .filter((x) => x.v > 0);
-      body.append(el("h4", null, `Đã đóng · ${pays.length} lần`));
+        .filter((x) => x.v !== 0);
+      body.append(el("h4", null, `Đã đóng / hoàn · ${pays.length} lần`));
       const lp = el("ul", "tc-lines");
       if (!pays.length) lp.append(el("li", "tc-empty", "Chưa đóng lần nào."));
       pays.forEach(({ r, v }) => {
@@ -301,7 +301,8 @@
           what.append(
             el("span", "tc-sub", u.members.filter((m) => r.of(m.name)).map((m) => `${show(m.name)} ${money(r.of(m.name))}`).join(" · "))
           );
-        li.append(what, el("span", "tc-amount", money(v)));
+        if (v < 0) what.append(el("span", "tc-sub", "Quỹ hoàn lại"));
+        li.append(what, el("span", `tc-amount ${v < 0 ? "is-neg" : ""}`, money(v)));
         lp.append(li);
       });
       body.append(lp);
@@ -354,10 +355,14 @@
         const li = el("li");
         const d = el("details", "tc-item");
         const s = el("summary");
-        const payers = names.filter((n) => r.of(n) > 0);
+        const payers = names.filter((n) => r.of(n) !== 0);
+        const refund = r.amount < 0;
         const what = el("span", "tc-lines__what");
-        what.append(el("strong", null, r.date), el("span", "tc-sub", `${payers.length} người đóng`));
-        s.append(what, el("span", "tc-amount is-pos", money(r.amount)));
+        what.append(
+          el("strong", null, r.date),
+          el("span", "tc-sub", refund ? `Quỹ hoàn lại · ${payers.length} người` : `${payers.length} người đóng`)
+        );
+        s.append(what, el("span", `tc-amount ${refund ? "is-neg" : "is-pos"}`, money(r.amount)));
         const chips = el("ul", "tc-chips");
         payers.forEach((n) => {
           const c = el("li");

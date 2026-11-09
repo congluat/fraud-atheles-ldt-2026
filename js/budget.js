@@ -122,7 +122,7 @@
         amount: toNumber(totalCol > 0 ? r[totalCol] : r[r.length - 1]) * UNIT,
         each: names.map((_, i) => toNumber(r[i + 1]) * UNIT),
       }))
-      .filter((it) => it.amount > 0);
+      .filter((it) => it.amount !== 0); // số âm = quỹ hoàn lại
     return { names, rounds };
   }
 
@@ -225,7 +225,7 @@
     const thuIdx = thu ? matchIndex(thu.names, p.name, i) : -1;
     const payments = thuIdx < 0 ? [] : thu.rounds
       .map((r, n) => ({ round: n + 1, date: r.date, amount: r.each[thuIdx] }))
-      .filter((r) => r.amount > 0);
+      .filter((r) => r.amount !== 0);
 
     const paid = p.paid ?? payments.reduce((s, r) => s + r.amount, 0);
     const spent = p.spent ?? spends.reduce((s, it) => s + it.share(chiPerson), 0);
