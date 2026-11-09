@@ -515,3 +515,12 @@ a {
   outline: 2px solid var(--trail);
   outline-offset: 2px;
 }
+
+.tc-badge.is-done {
+  background: var(--pine);
+  color: var(--mist);
+}
+
+.tc-card:has(.tc-badge.is-done) {
+  background: #f0f5f1;
+}

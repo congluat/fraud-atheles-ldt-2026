@@ -220,8 +220,8 @@
 
   function badge(n) {
     const r = Math.round(n / UNIT);
-    const b = el("span", `tc-badge ${r < 0 ? "is-neg" : r > 0 ? "is-pos" : ""}`);
-    b.textContent = r < 0 ? `Thiếu ${money(-r * UNIT)}` : r > 0 ? `Dư ${money(r * UNIT)}` : "Đủ";
+    const b = el("span", `tc-badge ${r < 0 ? "is-neg" : r > 0 ? "is-pos" : "is-done"}`);
+    b.textContent = r < 0 ? `Thiếu ${money(-r * UNIT)}` : r > 0 ? `Dư ${money(r * UNIT)}` : "✓ Đã xong";
     return b;
   }
 
